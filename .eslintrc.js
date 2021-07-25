@@ -20,5 +20,6 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-double'],
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'import/order': 'off',
   },
 };
