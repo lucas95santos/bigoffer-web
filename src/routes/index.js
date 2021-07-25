@@ -8,7 +8,7 @@ import { Navbar } from '../components';
 import { Home } from '../screens';
 
 const ScreenWrapper = ({ children }) => (
-  <div className="screen-wrapper">{children}</div>
+  <main className="screen-wrapper">{children}</main>
 );
 
 const Routes = () => (
