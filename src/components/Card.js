@@ -3,47 +3,33 @@ import React from 'react';
 import { Slider } from './Slider';
 // icons
 import { FiBookmark } from 'react-icons/fi';
-// assets
-import fakeItemImg from '../assets/fake-item.png';
 // styles
 import '../styles/card.scss';
 
-const images = [
-  {
-    url: fakeItemImg,
-  },
-  {
-    url: fakeItemImg,
-  },
-  {
-    url: fakeItemImg,
-  },
-  {
-    url: fakeItemImg,
-  },
-  {
-    url: fakeItemImg,
-  },
-];
-
-const Card = () => (
-  <div className="card">
+const Card = ({ item, small, next = false, rest }) => (
+  <div className={`card ${small && 'small'}`} {...rest}>
     <div className="card__icon" title="Salvar item">
       <FiBookmark />
     </div>
-    <span className="card__title">Titulo</span>
+    <span className="card__title">{item.title}</span>
 
     <div className="card__slider">
-      <Slider images={images} />
+      <Slider images={item.images} />
     </div>
 
     <div className="card__info">
       <p>
-        Lance mínimo: <span>&nbsp;R$ 250,00</span>
+        Lance mínimo: <span>&nbsp;{`R$ ${item.minimumPrice}`}</span>
       </p>
-      <small>
-        Tempo restante: <span>&nbsp;2 horas e 15 minutos</span>
-      </small>
+      {next ? (
+        <small>
+          Disponível em: <span>&nbsp;3 dias</span>
+        </small>
+      ) : (
+        <small>
+          Tempo restante: <span>&nbsp;2 horas e 15 minutos</span>
+        </small>
+      )}
     </div>
 
     <button type="button" className="solid">

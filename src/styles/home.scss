@@ -27,7 +27,16 @@
 
 .next-items {
   background: #42a5f5;
+
   h1 {
     color: $whiteColor;
+  }
+
+  .items {
+    max-width: 90%;
+    margin: 48px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
   }
 }

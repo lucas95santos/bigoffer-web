@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 import React from 'react';
 import SliderLib from 'react-slick';
 // styles
@@ -16,7 +18,7 @@ const Slider = ({ type = 'image', images }) => (
   <SliderLib {...settings} className="slider">
     {type === 'image' ? (
       images.map((image, index) => (
-        <div className="slider__image">
+        <div className="slider__image" key={image.id}>
           <img src={image.url} alt={`Imagem ${index + 1}`} />
         </div>
       ))
