@@ -1,0 +1,83 @@
+$primaryColor: #1565c0;
+
+.navbar {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #bbbbbb;
+
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    .menu__item {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+
+      &.active {
+        a {
+          color: $primaryColor;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #bbbbbb;
+        text-decoration: none;
+        transition: all linear 0.15s;
+
+        svg {
+          font-size: 1.3rem;
+        }
+
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+
+      button {
+        width: 120px;
+        padding: 4px 8px;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+      }
+
+      .user-area {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: default;
+
+        .user-area__avatar {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          border: 2px solid $primaryColor;
+
+          img {
+            max-width: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+          }
+
+          svg {
+            font-size: 1.3rem;
+            color: #cccccc;
+          }
+        }
+
+        .user-area__fullname {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+}

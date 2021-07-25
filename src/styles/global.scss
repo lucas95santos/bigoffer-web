@@ -32,6 +32,7 @@ button {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.4px;
   padding: 12px;
   border-radius: 4px;
   transition: all linear 0.2s;
@@ -89,5 +90,19 @@ button {
 
   @media screen and (max-width: 1366px) {
     max-width: 100% !important;
+  }
+}
+
+nav {
+  width: 100%;
+  height: 70px;
+  background: $whiteColor;
+  box-shadow: 0 4px 12px 6px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  @media screen and (max-width: 1366px) {
+    padding: 0 32px;
   }
 }
