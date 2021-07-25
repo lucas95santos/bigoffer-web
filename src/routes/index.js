@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Switch } from 'react-router-dom';
 // route wrapper
 import Route from './Route';
@@ -12,12 +12,14 @@ const ScreenWrapper = ({ children }) => (
 );
 
 const Routes = () => (
-  <ScreenWrapper>
+  <>
     <Navbar />
-    <Switch>
-      <Route exact path="/" component={Home} />
-    </Switch>
-  </ScreenWrapper>
+    <ScreenWrapper>
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </ScreenWrapper>
+  </>
 );
 
 export default Routes;
