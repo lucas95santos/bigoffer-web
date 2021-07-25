@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+.available-items,
+.next-items {
+  min-height: calc(100vh - 70px);
+
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  .container {
+    padding: 32px 0;
+  }
+
+  @media screen and (max-width: 1366px) {
+    padding: 0 32px;
+  }
+}
+
+.available-items {
+  h1 {
+    color: $primaryColor;
+  }
+}
+
+.next-items {
+  background: #42a5f5;
+  h1 {
+    color: $whiteColor;
+  }
+}
