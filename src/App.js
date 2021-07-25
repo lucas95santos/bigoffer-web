@@ -1,5 +1,12 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+// routes
+import Routes from './routes';
 
-const App = () => <h1>Hello</h1>;
+const App = () => (
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+);
 
 export default App;
