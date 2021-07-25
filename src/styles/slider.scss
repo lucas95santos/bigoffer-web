@@ -1,0 +1,35 @@
+@import './variables.scss';
+
+.slider {
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+
+  ul {
+    bottom: 4px;
+
+    li.slick-active {
+      button::before {
+        opacity: 1;
+        color: $primaryColor;
+      }
+    }
+
+    button::before {
+      opacity: 1;
+      color: #cccccc;
+    }
+  }
+
+  .slider__image {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: contain;
+    }
+  }
+}

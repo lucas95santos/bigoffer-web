@@ -1,0 +1,75 @@
+@import './variables.scss';
+
+.card {
+  position: relative;
+  min-width: 200px;
+  max-width: 33%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: $whiteColor;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
+
+  .card__icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    transition: all linear 0.15s;
+
+    svg {
+      font-size: 1.3rem;
+      color: $textColor;
+    }
+
+    &:hover {
+      filter: brightness(85%);
+    }
+  }
+
+  .card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primaryColor;
+  }
+
+  .card__slider {
+    background: #f1f1f1;
+    height: 240px;
+    border-radius: 8px;
+  }
+
+  .card__info {
+    p {
+      width: fit-content;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: $textColor;
+      margin-bottom: 8px;
+
+      span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $primaryColor;
+      }
+    }
+
+    small {
+      color: $textColor;
+      font-weight: 500;
+
+      span {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: $textSuccessColor;
+      }
+    }
+  }
+
+  button {
+    text-transform: uppercase;
+  }
+}
