@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from 'react-loading';
 // components
 import { Card, Slider } from '../components';
 // styles
@@ -29,36 +30,44 @@ const Home = () => {
 
   return (
     <>
-      <section className="available-items">
-        <div className="container">
-          <h1>Disponíveis agora</h1>
-          {openedAuctions.length > 0 && (
-            <div className="items">
-              <Slider type="item">
-                {openedAuctions.map((auction, index) => (
-                  <div
-                    data-index={index}
-                    className="item-wrapper"
-                    key={auction.id}
-                  >
-                    <Card item={auction} />
-                  </div>
-                ))}
-              </Slider>
+      {!openedAuctions.length && !nextAuctions.length ? (
+        <div className="loading-container">
+          <Loading type="bubbles" color="#1565c0" height={72} width={72} />
+        </div>
+      ) : (
+        <>
+          <section className="available-items">
+            <div className="container">
+              <h1>Disponíveis agora</h1>
+              {openedAuctions.length > 0 && (
+                <div className="items">
+                  <Slider type="item">
+                    {openedAuctions.map((auction, index) => (
+                      <div
+                        data-index={index}
+                        className="item-wrapper"
+                        key={auction.id}
+                      >
+                        <Card item={auction} />
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </section>
-      <section className="next-items">
-        <div className="container">
-          <h1>Próximos leilões</h1>
-          <div className="items">
-            {nextAuctions.map((auction) => (
-              <Card small next item={auction} key={auction.id} />
-            ))}
-          </div>
-        </div>
-      </section>
+          </section>
+          <section className="next-items">
+            <div className="container">
+              <h1>Próximos leilões</h1>
+              <div className="items">
+                {nextAuctions.map((auction) => (
+                  <Card small next item={auction} key={auction.id} />
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 };
