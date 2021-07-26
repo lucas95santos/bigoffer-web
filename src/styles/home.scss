@@ -2,8 +2,6 @@
 
 .available-items,
 .next-items {
-  min-height: calc(100vh - 70px);
-
   h1 {
     font-size: 1.25rem;
     font-weight: 600;
@@ -22,6 +20,14 @@
 .available-items {
   h1 {
     color: $primaryColor;
+  }
+
+  .items {
+    margin: 48px 0;
+
+    .item-wrapper {
+      padding: 6px 16px;
+    }
   }
 }
 
