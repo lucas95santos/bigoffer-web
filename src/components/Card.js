@@ -5,6 +5,8 @@ import { Slider } from './Slider';
 import { FiBookmark } from 'react-icons/fi';
 // styles
 import '../styles/card.scss';
+// utils
+import { moneyFormatter } from '../utils';
 
 const Card = ({ item, small, next = false, rest }) => (
   <div className={`card ${small && 'small'}`} {...rest}>
@@ -19,7 +21,8 @@ const Card = ({ item, small, next = false, rest }) => (
 
     <div className="card__info">
       <p>
-        Lance mínimo: <span>&nbsp;{`R$ ${item.minimumPrice}`}</span>
+        Lance mínimo:{' '}
+        <span>&nbsp;{moneyFormatter.format(item.minimumPrice)}</span>
       </p>
       {next ? (
         <small>
