@@ -21,6 +21,24 @@
 
   &.small {
     max-width: calc(25% - 24px);
+
+    @media screen and (max-width: 1200px) {
+      min-width: calc(33% - 20px);
+      max-width: calc(33% - 20px);
+      flex: 1 1 calc(33% - 20px);
+    }
+
+    @media screen and (max-width: 900px) {
+      min-width: calc(50% - 16px);
+      max-width: calc(50% - 16px);
+      flex: 1 1 calc(50% - 16px);
+    }
+
+    @media screen and (max-width: 600px) {
+      min-width: 100%;
+      max-width: 100%;
+      flex: 1 1 100%;
+    }
   }
 
   .card__icon {

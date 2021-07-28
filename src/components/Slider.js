@@ -1,19 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SliderLib from 'react-slick';
 // icons
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 // styles
 import '../styles/slider.scss';
-
-const settings = {
-  dots: true,
-  infinite: true,
-  arrows: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  draggable: true,
-};
 
 const PrevArrow = ({ className, style, onClick }) => (
   <HiOutlineChevronLeft
@@ -32,18 +22,50 @@ const NextArrow = ({ className, style, onClick }) => (
 );
 
 const Slider = ({ type = 'image', images, children, rest }) => {
-  settings.arrows = type !== 'image';
-  settings.dots = type === 'image';
-  settings.slidesToShow = type === 'image' ? 1 : 2;
-  settings.slidesToScroll = type === 'image' ? 1 : 2;
-  settings.draggable = type === 'image';
-  settings.prevArrow = <PrevArrow />;
-  settings.nextArrow = <NextArrow />;
+  const [localSettings, setLocalSettings] = useState(null);
+
+  useEffect(() => {
+    setLocalSettings({
+      infinite: true,
+      speed: 500,
+      prevArrow: <PrevArrow />,
+      nextArrow: <NextArrow />,
+      arrows: type !== 'image',
+      dots: type === 'image',
+      slidesToShow: type === 'image' ? 1 : 2,
+      slidesToScroll: type === 'image' ? 1 : 2,
+      draggable: type === 'image',
+    });
+
+    if (type === 'item') {
+      window.addEventListener('resize', checkWindowWidth, false);
+    }
+
+    return () => {
+      window.removeEventListener('resize', checkWindowWidth, false);
+    };
+  }, []);
+
+  const checkWindowWidth = () => {
+    if (window.innerWidth < 700) {
+      setLocalSettings((oldSettings) => ({
+        ...oldSettings,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      }));
+    } else {
+      setLocalSettings((oldSettings) => ({
+        ...oldSettings,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      }));
+    }
+  };
 
   return (
     <>
       {type === 'image' ? (
-        <SliderLib {...settings} className="slider" {...rest}>
+        <SliderLib {...localSettings} className="slider" {...rest}>
           {images.map((image, index) => (
             <div className="slider__image" key={image.id}>
               <img src={image.url} alt={`Imagem ${index + 1}`} />
@@ -51,7 +73,7 @@ const Slider = ({ type = 'image', images, children, rest }) => {
           ))}
         </SliderLib>
       ) : (
-        <SliderLib {...settings} className="slider" {...rest}>
+        <SliderLib {...localSettings} className="slider" {...rest}>
           {children}
         </SliderLib>
       )}
