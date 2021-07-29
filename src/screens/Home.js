@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Loading from 'react-loading';
 // components
 import { Card, Slider } from '../components';
-// styles
-import '../styles/home.scss';
 
 const fetchItems = async (route) => {
   const response = await fetch(`http://localhost:3333/${route}`);

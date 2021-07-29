@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 // icons
 import { FiX } from 'react-icons/fi';
-// styles
-import '../styles/modal.scss';
 
 const Modal = ({ visible, onClose, children, classes }) => {
   const modalRef = useRef();

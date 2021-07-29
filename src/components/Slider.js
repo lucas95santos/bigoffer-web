@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SliderLib from 'react-slick';
 // icons
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
-// styles
-import '../styles/slider.scss';
 
 const PrevArrow = ({ className, style, onClick }) => (
   <HiOutlineChevronLeft

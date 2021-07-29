@@ -3,8 +3,6 @@ import React from 'react';
 import { Slider } from './Slider';
 // icons
 import { FiBookmark } from 'react-icons/fi';
-// styles
-import '../styles/card.scss';
 // utils
 import { moneyFormatter } from '../utils';
 

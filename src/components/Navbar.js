@@ -6,8 +6,6 @@ import { HiOutlineCog } from 'react-icons/hi';
 // import { FaUserAlt } from 'react-icons/fa'; -> Habilitar quando o usuário estiver logado
 // assets
 import logoImg from '../assets/logo.png';
-// styles
-import '../styles/navbar.scss';
 
 const Navbar = () => (
   <header>
