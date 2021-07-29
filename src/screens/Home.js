@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from 'react-loading';
 // components
-import { Card, Slider } from '../components';
+import { Card, Slider, Modal } from '../components';
 // styles
 import '../styles/home.scss';
 
@@ -15,6 +15,7 @@ const fetchItems = async (route) => {
 const Home = () => {
   const [openedAuctions, setOpenedAuctions] = useState([]);
   const [nextAuctions, setNextAuctions] = useState([]);
+  const [shouldShowModal, showModal] = useState(false);
 
   useEffect(() => {
     getAuctions();
@@ -28,6 +29,10 @@ const Home = () => {
     }
   };
 
+  const handleModalClick = () => {
+    showModal(true);
+  };
+
   return (
     <>
       {!openedAuctions.length && !nextAuctions.length ? (
@@ -39,6 +44,9 @@ const Home = () => {
           <section className="available-items">
             <div className="container">
               <h1>Disponíveis agora</h1>
+              <button onClick={handleModalClick} type="button">
+                Modal
+              </button>
               {openedAuctions.length > 0 && (
                 <div className="items">
                   <Slider type="item">
@@ -68,6 +76,7 @@ const Home = () => {
           </section>
         </>
       )}
+      <Modal visible={shouldShowModal} onClose={() => showModal(false)} />
     </>
   );
 };
