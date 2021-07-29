@@ -1,9 +1,18 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
-export const Context = createContext();
+export const GlobalContext = createContext();
 
-const ContextProvider = ({ children }) => (
-  <Context.Provider value={{}}>{children}</Context.Provider>
-);
+const GlobalProvider = ({ children }) => {
+  const [shouldShowAuthenticationModal, showAuthenticationModal] =
+    useState(false);
 
-export default ContextProvider;
+  return (
+    <GlobalContext.Provider
+      value={{ shouldShowAuthenticationModal, showAuthenticationModal }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};
+
+export default GlobalProvider;

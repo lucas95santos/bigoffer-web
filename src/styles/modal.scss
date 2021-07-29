@@ -1,5 +1,6 @@
+/* modal component styles */
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -54,5 +55,57 @@
   to {
     transform: translateY(0%);
     opacity: 1;
+  }
+}
+/* end modal component styles */
+
+/* authentication modal component styles */
+.authentication {
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .authentication__title {
+    text-align: center;
+    margin-top: 24px;
+
+    h2 {
+      color: $primaryColor;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  .authentication__form {
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input,
+    button {
+      width: 100%;
+      height: 48px;
+    }
+
+    button.solid {
+      margin: 24px 0;
+      text-transform: uppercase;
+    }
+
+    input + input {
+      margin-top: 16px;
+    }
+
+    small {
+      color: #999999;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+    }
   }
 }

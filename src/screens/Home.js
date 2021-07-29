@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Loading from 'react-loading';
 // components
 import { Card, Slider } from '../components';
+// containers
+import { AuthenticationModal } from '../containers';
 
 const fetchItems = async (route) => {
   const response = await fetch(`http://localhost:3333/${route}`);
@@ -66,6 +68,7 @@ const Home = () => {
           </section>
         </>
       )}
+      <AuthenticationModal />
     </>
   );
 };
