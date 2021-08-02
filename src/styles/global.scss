@@ -17,6 +17,24 @@ input {
   }
 }
 
+.input-inline {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+
+  input {
+    min-width: 18vw;
+
+    @media screen and (max-width: 1366px) {
+      min-width: 25vw;
+    }
+  }
+}
+
+.input-inline + .input-inline {
+  margin-top: 16px;
+}
+
 button {
   cursor: pointer;
   font-size: 1rem;
@@ -98,4 +116,10 @@ nav {
 
 .screen-wrapper {
   margin-top: $navbarHeight;
+}
+
+/* classes auxiliares */
+// margin
+.mt_16 {
+  margin-top: 16px;
 }

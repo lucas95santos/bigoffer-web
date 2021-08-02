@@ -97,15 +97,12 @@
       margin: 24px 0;
       text-transform: uppercase;
     }
+  }
 
-    input + input {
-      margin-top: 16px;
-    }
-
-    small {
-      color: #999999;
-      font-weight: 500;
-      letter-spacing: 0.4px;
-    }
+  small {
+    color: #999999;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    margin-bottom: 24px;
   }
 }
