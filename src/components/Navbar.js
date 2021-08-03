@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
 // icons
@@ -12,6 +12,7 @@ import logoImg from '../assets/logo.png';
 
 const Navbar = () => {
   const globalContext = useContext(GlobalContext);
+  const location = useLocation();
 
   const onAccessClick = () => {
     const { showAuthenticationModal } = globalContext;
@@ -19,7 +20,10 @@ const Navbar = () => {
     showAuthenticationModal(true);
   };
 
-  const isRouteActive = (route) => document.location.pathname === `/${route}`;
+  const isRouteActive = useCallback(
+    (route) => location.pathname === `/${route}`,
+    [location],
+  );
 
   return (
     <header>
@@ -38,7 +42,7 @@ const Navbar = () => {
               <li
                 className={`menu__item ${isRouteActive('salvos') && 'active'}`}
               >
-                <Link to="/">
+                <Link to="/salvos">
                   <FiBookmark />
                   Itens salvos
                 </Link>
@@ -48,7 +52,7 @@ const Navbar = () => {
                   isRouteActive('notificacoes') && 'active'
                 }`}
               >
-                <Link to="/">
+                <Link to="/notificacoes">
                   <FiBell />
                   Notificações
                 </Link>
@@ -58,7 +62,7 @@ const Navbar = () => {
                   isRouteActive('configuracoes') && 'active'
                 }`}
               >
-                <Link to="/">
+                <Link to="/configuracoes">
                   <HiOutlineCog />
                   Configurações
                 </Link>
