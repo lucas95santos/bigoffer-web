@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
 // icons
@@ -18,6 +19,8 @@ const Navbar = () => {
     showAuthenticationModal(true);
   };
 
+  const isRouteActive = (route) => document.location.pathname === `/${route}`;
+
   return (
     <header>
       <nav>
@@ -26,29 +29,39 @@ const Navbar = () => {
             <img src={logoImg} alt="Big Offer logo" />
 
             <ul className="navbar__menu">
-              <li className="menu__item">
-                <a href="/">
+              <li className={`menu__item ${isRouteActive('') && 'active'}`}>
+                <Link to="/">
                   <CgHome />
                   Início
-                </a>
+                </Link>
               </li>
-              <li className="menu__item">
-                <a href="/">
+              <li
+                className={`menu__item ${isRouteActive('salvos') && 'active'}`}
+              >
+                <Link to="/">
                   <FiBookmark />
                   Itens salvos
-                </a>
+                </Link>
               </li>
-              <li className="menu__item">
-                <a href="/">
+              <li
+                className={`menu__item ${
+                  isRouteActive('notificacoes') && 'active'
+                }`}
+              >
+                <Link to="/">
                   <FiBell />
                   Notificações
-                </a>
+                </Link>
               </li>
-              <li className="menu__item">
-                <a href="/">
+              <li
+                className={`menu__item ${
+                  isRouteActive('configuracoes') && 'active'
+                }`}
+              >
+                <Link to="/">
                   <HiOutlineCog />
                   Configurações
-                </a>
+                </Link>
               </li>
               <li className="menu__item">
                 <button
