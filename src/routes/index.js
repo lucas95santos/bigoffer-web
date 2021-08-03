@@ -5,7 +5,7 @@ import Route from './Route';
 // components
 import { Navbar } from '../components';
 // screens
-import { Home } from '../screens';
+import { Home, SavedItems, Notifications, Settings } from '../screens';
 
 const ScreenWrapper = ({ children }) => (
   <main className="screen-wrapper">{children}</main>
@@ -17,6 +17,9 @@ const Routes = () => (
     <ScreenWrapper>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/salvos" component={SavedItems} />
+        <Route path="/notificacoes" component={Notifications} />
+        <Route path="/configuracoes" component={Settings} />
       </Switch>
     </ScreenWrapper>
   </>
