@@ -36,6 +36,7 @@ const Slider = ({ type = 'image', images, children, rest }) => {
     });
 
     if (type === 'item') {
+      checkWindowWidth();
       window.addEventListener('resize', checkWindowWidth, false);
     }
 
