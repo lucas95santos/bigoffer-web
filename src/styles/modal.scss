@@ -14,15 +14,17 @@
   .modal-content {
     position: relative;
     min-width: 20vw;
-    min-height: 45vh;
     background: $whiteColor;
     box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     animation: modalIn 0.6s ease-out;
 
     @media screen and (max-width: 1366px) {
+      min-width: 35vw;
+    }
+
+    @media screen and (max-width: 900px) {
       min-width: 30vw;
-      min-height: 65vh;
     }
 
     .close-icon {
@@ -66,6 +68,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  gap: 32px;
 
   .authentication__title {
     text-align: center;
@@ -82,7 +86,6 @@
 
   .authentication__form {
     width: 100%;
-    margin-top: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,15 +97,21 @@
     }
 
     button.solid {
-      margin: 24px 0;
+      margin: 24px 0 0;
       text-transform: uppercase;
     }
   }
 
-  small {
-    color: #999999;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    margin-bottom: 24px;
+  .authentication__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    small {
+      color: #999999;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      margin-bottom: 16px;
+    }
   }
 }

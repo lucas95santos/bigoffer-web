@@ -62,14 +62,16 @@ const AuthenticationModal = () => {
               </button>
             </form>
 
-            <small>Não possui conta?</small>
-            <button
-              type="button"
-              className="outlined no-border"
-              onClick={() => setAuthenticationType(authentication.SIGN_UP)}
-            >
-              Cadastre-se agora
-            </button>
+            <div className="authentication__footer">
+              <small>Não possui conta?</small>
+              <button
+                type="button"
+                className="outlined no-border"
+                onClick={() => setAuthenticationType(authentication.SIGN_UP)}
+              >
+                Cadastre-se agora
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -104,14 +106,16 @@ const AuthenticationModal = () => {
               </button>
             </form>
 
-            <small>Já possui conta?</small>
-            <button
-              type="button"
-              className="outlined no-border"
-              onClick={() => setAuthenticationType(authentication.SIGN_IN)}
-            >
-              Faça seu login
-            </button>
+            <div className="authentication__footer">
+              <small>Já possui conta?</small>
+              <button
+                type="button"
+                className="outlined no-border"
+                onClick={() => setAuthenticationType(authentication.SIGN_IN)}
+              >
+                Faça seu login
+              </button>
+            </div>
           </>
         )}
       </div>
