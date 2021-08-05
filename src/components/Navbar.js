@@ -1,10 +1,12 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
+// components
+import { MobileMenu } from './MobileMenu';
 // icons
 import { CgHome } from 'react-icons/cg';
-import { FiBookmark, FiBell } from 'react-icons/fi';
+import { FiBookmark, FiBell, FiMenu } from 'react-icons/fi';
 import { HiOutlineCog } from 'react-icons/hi';
 // import { FaUserAlt } from 'react-icons/fa'; -> Habilitar quando o usuário estiver logado
 // assets
@@ -13,6 +15,8 @@ import logoImg from '../assets/logo.png';
 const Navbar = () => {
   const globalContext = useContext(GlobalContext);
   const location = useLocation();
+
+  const [shouldShowMobileMenu, showMobileMenu] = useState(false);
 
   const onAccessClick = () => {
     const { showAuthenticationModal } = globalContext;
@@ -86,6 +90,15 @@ const Navbar = () => {
                 </div>
               </li> */}
             </ul>
+
+            <div className="navbar__menu--collapse">
+              <FiMenu onClick={() => showMobileMenu(true)} />
+
+              <MobileMenu
+                visible={shouldShowMobileMenu}
+                onClose={() => showMobileMenu(false)}
+              />
+            </div>
           </div>
         </div>
       </nav>
