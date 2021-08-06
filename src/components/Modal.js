@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 // icons
 import { FiX } from 'react-icons/fi';
 
 const Modal = ({ visible, onClose, children, classes }) => {
   const modalRef = useRef();
   const modalContentRef = useRef();
+
+  const [isOut, setIsOut] = useState(false);
 
   useEffect(() => {
     document.addEventListener('click', onOutsideClick, false);
@@ -20,10 +22,19 @@ const Modal = ({ visible, onClose, children, classes }) => {
         modalRef.current.contains(event.target) &&
         !modalContentRef?.current.contains(event.target)
       ) {
-        onClose();
+        handleClose();
       }
     }
   }, []);
+
+  const handleClose = () => {
+    setIsOut(true);
+
+    setTimeout(() => {
+      onClose();
+      setIsOut(false);
+    }, 350);
+  };
 
   if (visible) {
     document.body.style.overflowY = 'hidden';
@@ -33,9 +44,14 @@ const Modal = ({ visible, onClose, children, classes }) => {
   }
 
   return (
-    <div ref={modalRef} className="modal">
-      <div ref={modalContentRef} className={`modal-content ${classes}`}>
-        <button type="button" className="close-icon" onClick={onClose}>
+    <div ref={modalRef} className={`modal ${isOut ? 'modal-out' : ''}`}>
+      <div
+        ref={modalContentRef}
+        className={`modal-content ${
+          isOut ? 'modal-content-out' : ''
+        } ${classes}`}
+      >
+        <button type="button" className="close-icon" onClick={handleClose}>
           <FiX />
         </button>
         {children}

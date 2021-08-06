@@ -10,6 +10,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: modalIn 0.4s ease-out;
+
+  &.modal-out {
+    animation: modalOut 0.35s ease-out;
+  }
 
   .modal-content {
     position: relative;
@@ -17,7 +22,11 @@
     background: $whiteColor;
     box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    animation: modalIn 0.6s ease-out;
+    animation: modalContentIn 0.4s ease-out;
+
+    &.modal-content-out {
+      animation: modalContentOut 0.35s ease-out;
+    }
 
     @media screen and (max-width: 1366px) {
       min-width: 35vw;
@@ -49,7 +58,7 @@
   }
 }
 
-@keyframes modalIn {
+@keyframes modalContentIn {
   from {
     transform: translateY(-100%);
     opacity: 1;
@@ -57,6 +66,35 @@
   to {
     transform: translateY(0%);
     opacity: 1;
+  }
+}
+
+@keyframes modalContentOut {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-150%);
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 /* end modal component styles */
