@@ -15,6 +15,11 @@ input {
   &:focus {
     border-color: #1565c0;
   }
+
+  &[type='password'] {
+    font: small-caption;
+    letter-spacing: 1.5px;
+  }
 }
 
 .input-inline {
