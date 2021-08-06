@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Notifications = () => (
-  <div>
-    <h1>Notificações</h1>
-  </div>
+  <section className="notifications">
+    <div className="container">
+      <h1>Notificações</h1>
+    </div>
+  </section>
 );
 
 export { Notifications };

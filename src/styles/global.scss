@@ -129,6 +129,27 @@ nav {
   margin-top: $navbarHeight;
 }
 
+.available-items,
+.next-items,
+.saved-items,
+.notifications,
+.settings {
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: $primaryColor;
+  }
+
+  .container {
+    padding: 32px 0;
+  }
+
+  @media screen and (max-width: 1366px) {
+    padding: 0 32px;
+  }
+}
+
 /* classes auxiliares */
 // margin
 .mt_16 {
