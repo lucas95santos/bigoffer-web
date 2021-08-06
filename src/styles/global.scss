@@ -17,6 +17,12 @@ input {
   }
 
   &[type='password'] {
+    &::placeholder {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      letter-spacing: normal;
+    }
+
     font: small-caption;
     letter-spacing: 1.5px;
   }
