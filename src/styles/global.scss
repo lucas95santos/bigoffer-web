@@ -26,6 +26,10 @@ input {
     font: small-caption;
     letter-spacing: 1.5px;
   }
+
+  &.input-error {
+    border-color: #c62828;
+  }
 }
 
 .input-inline {

@@ -5,6 +5,8 @@ import { GlobalContext } from '../../contexts/global';
 import { Modal } from '../../components';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+// validation
+import { AuthValidation } from '../../validation';
 
 const authentication = {
   SIGN_IN: 0,
@@ -17,6 +19,8 @@ const AuthenticationModal = () => {
   const [authenticationType, setAuthenticationType] = useState(
     authentication.SIGN_IN,
   );
+  const [signInErrors, setSignInErrors] = useState(null);
+  const [signUpErrors, setSignUpErrors] = useState(null);
 
   useEffect(() => {
     if (!shouldShowAuthenticationModal) {
@@ -24,9 +28,28 @@ const AuthenticationModal = () => {
     }
   }, [shouldShowAuthenticationModal]);
 
-  const onAuthenticationSubmit = (event) => {
+  const onAuthenticationSubmit = (event, authenticationData) => {
     event.preventDefault();
-    // TODO: implementar a lógica de cadastro/login
+
+    if (authenticationType === authentication.SIGN_IN) {
+      const errors = AuthValidation.signIn(authenticationData);
+
+      if (!errors) {
+        // TODO: implementar envio do formulário
+        setSignInErrors(null);
+      } else {
+        setSignInErrors(errors);
+      }
+    } else {
+      const errors = AuthValidation.signUp(authenticationData);
+
+      if (!errors) {
+        // TODO: implementar envio do formulário
+        setSignUpErrors(null);
+      } else {
+        setSignUpErrors(errors);
+      }
+    }
   };
 
   return (
@@ -39,12 +62,14 @@ const AuthenticationModal = () => {
           onAuthenticationSubmit={onAuthenticationSubmit}
           changeAuthenticationTo={setAuthenticationType}
           authentication={authentication}
+          errors={signInErrors}
         />
       ) : (
         <SignUp
           onAuthenticationSubmit={onAuthenticationSubmit}
           changeAuthenticationTo={setAuthenticationType}
           authentication={authentication}
+          errors={signUpErrors}
         />
       )}
     </Modal>

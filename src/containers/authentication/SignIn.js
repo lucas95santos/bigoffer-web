@@ -1,7 +1,12 @@
 import React, { useState, useCallback } from 'react';
 
 const SignIn = React.memo(
-  ({ onAuthenticationSubmit, changeAuthenticationTo, authentication }) => {
+  ({
+    onAuthenticationSubmit,
+    changeAuthenticationTo,
+    authentication,
+    errors,
+  }) => {
     const [signInData, setSignInData] = useState({
       email: '',
       password: '',
@@ -23,21 +28,20 @@ const SignIn = React.memo(
         </div>
 
         <form
-          onSubmit={onAuthenticationSubmit}
+          onSubmit={(event) => onAuthenticationSubmit(event, signInData)}
           className="authentication__form"
         >
           <input
             type="email"
-            required
             placeholder="Digite seu email aqui"
+            className={`${errors?.includes('email') && 'input-error'}`}
             value={signInData.email}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
           <input
             type="password"
-            required
             placeholder="Digite sua senha aqui"
-            className="mt_16"
+            className={`mt_16 ${errors?.includes('password') && 'input-error'}`}
             value={signInData.password}
             onChange={(event) =>
               handleInputChange('password', event.target.value)
