@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 // global context
 import { GlobalContext } from '../../contexts/global';
 // components
@@ -14,43 +14,46 @@ const authentication = {
 };
 
 const AuthenticationModal = () => {
+  // context
   const { shouldShowAuthenticationModal, showAuthenticationModal } =
     useContext(GlobalContext);
+
+  // state
   const [authenticationType, setAuthenticationType] = useState(
     authentication.SIGN_IN,
   );
-  const [signInErrors, setSignInErrors] = useState(null);
-  const [signUpErrors, setSignUpErrors] = useState(null);
+  const [authenticationErrors, setAuthenticationErrors] = useState(null);
 
+  // side effects
   useEffect(() => {
     if (!shouldShowAuthenticationModal) {
       setAuthenticationType(authentication.SIGN_IN);
     }
   }, [shouldShowAuthenticationModal]);
 
+  // handlers
   const onAuthenticationSubmit = (event, authenticationData) => {
     event.preventDefault();
 
-    if (authenticationType === authentication.SIGN_IN) {
-      const errors = AuthValidation.signIn(authenticationData);
+    const requiredFields =
+      authenticationType === authentication.SIGN_IN
+        ? ['email', 'password']
+        : ['name', 'email', 'password', 'confirmPassword'];
 
-      if (!errors) {
-        // TODO: implementar envio do formulário
-        setSignInErrors(null);
-      } else {
-        setSignInErrors(errors);
-      }
+    const errors = AuthValidation.validate(authenticationData, requiredFields);
+
+    if (!errors) {
+      // TODO: implementar envio do formulário
+      setAuthenticationErrors(null);
     } else {
-      const errors = AuthValidation.signUp(authenticationData);
-
-      if (!errors) {
-        // TODO: implementar envio do formulário
-        setSignUpErrors(null);
-      } else {
-        setSignUpErrors(errors);
-      }
+      setAuthenticationErrors(errors);
     }
   };
+
+  const changeAuthenticationTo = useCallback((type) => {
+    setAuthenticationErrors(null);
+    setAuthenticationType(type);
+  }, []);
 
   return (
     <Modal
@@ -60,16 +63,16 @@ const AuthenticationModal = () => {
       {authenticationType === authentication.SIGN_IN ? (
         <SignIn
           onAuthenticationSubmit={onAuthenticationSubmit}
-          changeAuthenticationTo={setAuthenticationType}
+          changeAuthenticationTo={changeAuthenticationTo}
           authentication={authentication}
-          errors={signInErrors}
+          errors={authenticationErrors}
         />
       ) : (
         <SignUp
           onAuthenticationSubmit={onAuthenticationSubmit}
-          changeAuthenticationTo={setAuthenticationType}
+          changeAuthenticationTo={changeAuthenticationTo}
           authentication={authentication}
-          errors={signUpErrors}
+          errors={authenticationErrors}
         />
       )}
     </Modal>

@@ -7,17 +7,36 @@ const SignIn = React.memo(
     authentication,
     errors,
   }) => {
+    // state
     const [signInData, setSignInData] = useState({
       email: '',
       password: '',
     });
 
+    // handlers
     const handleInputChange = useCallback((field, value) => {
       setSignInData((oldSignInData) => ({
         ...oldSignInData,
         [field]: value,
       }));
     }, []);
+
+    const handleErrors = useCallback(
+      (field) => {
+        const fieldErrors = [];
+
+        if (errors) {
+          Object.keys(errors).forEach((errorKey) => {
+            if (errors[errorKey].includes(field)) {
+              fieldErrors.push(errorKey);
+            }
+          });
+        }
+
+        return fieldErrors;
+      },
+      [errors],
+    );
 
     return (
       <div className="authentication">
@@ -34,14 +53,16 @@ const SignIn = React.memo(
           <input
             type="email"
             placeholder="Digite seu email aqui"
-            className={`${errors?.includes('email') && 'input-error'}`}
+            className={`${handleErrors('email').length && 'input-error'}`}
             value={signInData.email}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
           <input
             type="password"
             placeholder="Digite sua senha aqui"
-            className={`mt_16 ${errors?.includes('password') && 'input-error'}`}
+            className={`mt_16 ${
+              handleErrors('password').length && 'input-error'
+            }`}
             value={signInData.password}
             onChange={(event) =>
               handleInputChange('password', event.target.value)

@@ -1,24 +1,15 @@
 class AuthValidation {
-  static signIn(authenticationData) {
-    const requiredFields = ['email', 'password'];
+  static validate(authenticationData, requiredFields) {
+    let errors = null;
 
     // verificando se todos os campos obrigatórios foram preenchidos
     const emptyFields = requiredFields.filter(
       (field) => authenticationData[field] === '',
     );
 
-    return emptyFields.length === 0 ? null : emptyFields;
-  }
+    if (emptyFields.length) errors = { emptyFields };
 
-  static signUp(authenticationData) {
-    const requiredFields = ['name', 'email', 'password', 'confirmPassword'];
-
-    // verificando se todos os campos obrigatórios foram preenchidos
-    const emptyFields = requiredFields.filter(
-      (field) => authenticationData[field] === '',
-    );
-
-    return emptyFields.length === 0 ? null : emptyFields;
+    return errors;
   }
 }
 

@@ -7,6 +7,7 @@ const SignUp = React.memo(
     authentication,
     errors,
   }) => {
+    // state
     const [signUpData, setSignUpData] = useState({
       name: '',
       email: '',
@@ -14,12 +15,30 @@ const SignUp = React.memo(
       confirmPassword: '',
     });
 
+    // handlers
     const handleInputChange = useCallback((field, value) => {
       setSignUpData((oldSignUpData) => ({
         ...oldSignUpData,
         [field]: value,
       }));
     }, []);
+
+    const handleErrors = useCallback(
+      (field) => {
+        const fieldErrors = [];
+
+        if (errors) {
+          Object.keys(errors).forEach((errorKey) => {
+            if (errors[errorKey].includes(field)) {
+              fieldErrors.push(errorKey);
+            }
+          });
+        }
+
+        return fieldErrors;
+      },
+      [errors],
+    );
 
     return (
       <div className="authentication">
@@ -39,7 +58,7 @@ const SignUp = React.memo(
             <input
               type="text"
               placeholder="Digite seu nome"
-              className={`${errors?.includes('name') && 'input-error'}`}
+              className={`${handleErrors('name').length && 'input-error'}`}
               value={signUpData.name}
               onChange={(event) =>
                 handleInputChange('name', event.target.value)
@@ -48,7 +67,7 @@ const SignUp = React.memo(
             <input
               type="email"
               placeholder="Digite sua email aqui"
-              className={`${errors?.includes('email') && 'input-error'}`}
+              className={`${handleErrors('email').length && 'input-error'}`}
               value={signUpData.email}
               onChange={(event) =>
                 handleInputChange('email', event.target.value)
@@ -60,7 +79,7 @@ const SignUp = React.memo(
             <input
               type="password"
               placeholder="Digite uma senha"
-              className={`${errors?.includes('password') && 'input-error'}`}
+              className={`${handleErrors('password').length && 'input-error'}`}
               value={signUpData.password}
               onChange={(event) =>
                 handleInputChange('password', event.target.value)
@@ -70,7 +89,7 @@ const SignUp = React.memo(
               type="password"
               placeholder="Confirme sua senha"
               className={`${
-                errors?.includes('confirmPassword') && 'input-error'
+                handleErrors('confirmPassword').length && 'input-error'
               }`}
               value={signUpData.confirmPassword}
               onChange={(event) =>
