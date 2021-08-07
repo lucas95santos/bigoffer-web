@@ -9,11 +9,11 @@ input {
   transition: border-color linear 0.15s;
 
   &::placeholder {
-    color: #bbbbbb;
+    color: $textColor;
   }
 
   &:focus {
-    border-color: #1565c0;
+    border-color: $primaryColor;
   }
 
   &[type='password'] {
@@ -28,7 +28,7 @@ input {
   }
 
   &.input-error {
-    border-color: #c62828;
+    border-color: $textErrorColor;
   }
 }
 
