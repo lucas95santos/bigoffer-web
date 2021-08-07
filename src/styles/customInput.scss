@@ -1,0 +1,73 @@
+.custom-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid #dddddd;
+  transition: border-color linear 0.15s;
+
+  input {
+    max-height: 36px;
+    border: none;
+    padding: 4px 0 !important;
+  }
+
+  svg {
+    font-size: 1.5rem;
+    color: $textColor;
+    transition: color linear 0.15s;
+  }
+
+  &.focus {
+    border-color: $primaryColor;
+
+    svg {
+      color: $primaryColor;
+    }
+  }
+
+  &.valid {
+    border-color: $textSuccessColor;
+
+    svg {
+      color: $textSuccessColor;
+    }
+  }
+
+  &.error {
+    border-color: $textErrorColor;
+
+    input {
+      &::placeholder {
+        color: $textErrorColor;
+        opacity: 0.7;
+      }
+    }
+
+    svg {
+      color: $textErrorColor;
+    }
+  }
+
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .invisible-icon {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    svg {
+      font-size: 1.35rem;
+      color: $textErrorColor;
+      filter: brightness(90%);
+      transition: filter linear 0.15s;
+
+      &:hover {
+        filter: brightness(110%);
+      }
+    }
+  }
+}
