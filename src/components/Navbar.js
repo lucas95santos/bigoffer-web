@@ -34,7 +34,9 @@ const Navbar = () => {
       <nav>
         <div className="container">
           <div className="navbar">
-            <img src={logoImg} alt="Big Offer logo" />
+            <Link to="/" title="Início">
+              <img src={logoImg} alt="Big Offer logo" />
+            </Link>
 
             <ul className="navbar__menu">
               <li className={`menu__item ${isRouteActive('') && 'active'}`}>
