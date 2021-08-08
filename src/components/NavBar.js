@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { GlobalContext } from '../contexts/global';
 // components
 import { MobileMenu } from './MobileMenu';
+// import { CategoryBar } from './CategoryBar';
 // icons
 import { CgHome } from 'react-icons/cg';
 import { FiBookmark, FiBell, FiMenu } from 'react-icons/fi';
@@ -12,7 +13,7 @@ import { HiOutlineCog } from 'react-icons/hi';
 // assets
 import logoImg from '../assets/logo.png';
 
-const Navbar = () => {
+const NavBar = () => {
   const globalContext = useContext(GlobalContext);
   const location = useLocation();
 
@@ -103,9 +104,10 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        {/* <CategoryBar /> */}
       </nav>
     </header>
   );
 };
 
-export { Navbar };
+export { NavBar };

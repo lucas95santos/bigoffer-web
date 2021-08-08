@@ -1,0 +1,26 @@
+.category-bar {
+  margin-top: $navbarHeight;
+  background: $primaryColor;
+  height: 40px;
+
+  .category-bar__item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    li {
+      color: $whiteColor;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: filter linear 0.15s;
+
+      &:hover {
+        filter: brightness(90%);
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 // route wrapper
 import Route from './Route';
 // components
-import { Navbar } from '../components';
+import { NavBar, CategoryBar } from '../components';
 // screens
 import { Home, SavedItems, Notifications, Settings } from '../screens';
 
@@ -13,7 +13,8 @@ const ScreenWrapper = ({ children }) => (
 
 const Routes = () => (
   <>
-    <Navbar />
+    <NavBar />
+    <CategoryBar />
     <ScreenWrapper>
       <Switch>
         <Route exact path="/" component={Home} />
