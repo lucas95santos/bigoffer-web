@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 // icons
-// eslint-disable-next-line no-unused-vars
 import { MdErrorOutline } from 'react-icons/md';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
+import { BsTriangleFill } from 'react-icons/bs';
 
 const inputStatus = {
   ON_FOCUS: 'focus',
@@ -17,6 +18,7 @@ const CustomInput = ({
   placeholder,
   errors,
   classes,
+  bordered,
   rest,
 }) => {
   // state
@@ -52,7 +54,11 @@ const CustomInput = ({
   };
 
   return (
-    <div className={`custom-input ${getInputStyle()} ${classes}`}>
+    <div
+      className={`custom-input ${getInputStyle()} ${
+        bordered && 'full-border'
+      } ${classes}`}
+    >
       {Icon && <Icon />}
       <input
         type={type}
@@ -68,6 +74,16 @@ const CustomInput = ({
         <MdErrorOutline
           className={`error-icon ${!hasErrors ? 'invisible-icon' : ''}`}
         />
+
+        {hasErrors && (
+          <div className="error-content">
+            <BsTriangleFill className="triangle" />
+            <div className="error-message">
+              <IoIosCloseCircleOutline />
+              <small>Campo de preenchimento obrigatório</small>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

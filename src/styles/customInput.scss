@@ -6,6 +6,12 @@
   border-bottom: 2px solid #dddddd;
   transition: border-color linear 0.15s;
 
+  &.full-border {
+    border: 2px solid #dddddd;
+    border-radius: 4px;
+    padding: 0 12px;
+  }
+
   input {
     max-height: 36px;
     border: none;
@@ -50,6 +56,7 @@
   }
 
   .error-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,6 +74,52 @@
 
       &:hover {
         filter: brightness(110%);
+
+        & ~ .error-content {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+
+    .error-content {
+      position: absolute;
+      left: 36px;
+      width: fit-content;
+      background: $textErrorColor;
+      filter: brightness(100%);
+      opacity: 0.87;
+      border-radius: 4px;
+      visibility: hidden;
+      opacity: 0;
+      transition: all linear 0.2s;
+
+      .triangle {
+        position: absolute;
+        top: 0.4rem;
+        left: -0.4rem;
+        color: $textErrorColor;
+        filter: brightness(100%);
+        font-size: 1rem;
+        transform: rotate(30deg);
+      }
+
+      .error-message {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px;
+
+        small {
+          font-size: 0.75rem;
+          white-space: nowrap;
+          color: $whiteColor;
+        }
+
+        svg {
+          font-size: 1rem;
+          color: $whiteColor;
+        }
       }
     }
   }
