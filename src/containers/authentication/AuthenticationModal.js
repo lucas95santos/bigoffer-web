@@ -28,6 +28,7 @@ const AuthenticationModal = () => {
   useEffect(() => {
     if (!shouldShowAuthenticationModal) {
       setAuthenticationType(authentication.SIGN_IN);
+      setAuthenticationErrors(null);
     }
   }, [shouldShowAuthenticationModal]);
 

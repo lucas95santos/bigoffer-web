@@ -1,4 +1,10 @@
 import React, { useState, useCallback } from 'react';
+// errors
+import AuthErrors from '../../errors/AuthErrors';
+// components
+import { CustomInput as Input } from '../../components';
+// icons
+import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 
 const SignUp = React.memo(
   ({
@@ -30,7 +36,7 @@ const SignUp = React.memo(
         if (errors) {
           Object.keys(errors).forEach((errorKey) => {
             if (errors[errorKey].includes(field)) {
-              fieldErrors.push(errorKey);
+              fieldErrors.push(AuthErrors[errorKey]);
             }
           });
         }
@@ -55,46 +61,48 @@ const SignUp = React.memo(
           className="authentication__form"
         >
           <div className="input-inline">
-            <input
+            <Input
               type="text"
-              placeholder="Digite seu nome"
-              className={`${handleErrors('name').length && 'input-error'}`}
+              placeholder="Nome"
               value={signUpData.name}
-              onChange={(event) =>
+              onTextChange={(event) =>
                 handleInputChange('name', event.target.value)
               }
+              icon={FiUser}
+              errors={handleErrors('name')}
             />
-            <input
-              type="email"
-              placeholder="Digite sua email aqui"
-              className={`${handleErrors('email').length && 'input-error'}`}
+            <Input
+              type="text"
+              placeholder="E-mail"
               value={signUpData.email}
-              onChange={(event) =>
+              onTextChange={(event) =>
                 handleInputChange('email', event.target.value)
               }
+              icon={FiMail}
+              errors={handleErrors('email')}
             />
           </div>
 
           <div className="input-inline">
-            <input
+            <Input
               type="password"
-              placeholder="Digite uma senha"
-              className={`${handleErrors('password').length && 'input-error'}`}
+              placeholder="Senha"
               value={signUpData.password}
-              onChange={(event) =>
+              onTextChange={(event) =>
                 handleInputChange('password', event.target.value)
               }
+              icon={FiLock}
+              errors={handleErrors('password')}
             />
-            <input
+            <Input
               type="password"
-              placeholder="Confirme sua senha"
-              className={`${
-                handleErrors('confirmPassword').length && 'input-error'
-              }`}
+              placeholder="Confirmar senha"
               value={signUpData.confirmPassword}
-              onChange={(event) =>
+              onTextChange={(event) =>
                 handleInputChange('confirmPassword', event.target.value)
               }
+              icon={FiLock}
+              errors={handleErrors('confirmPassword')}
             />
           </div>
 

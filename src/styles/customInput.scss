@@ -84,6 +84,7 @@
 
     .error-content {
       position: absolute;
+      top: -7px;
       left: 36px;
       width: fit-content;
       background: $textErrorColor;
@@ -106,7 +107,6 @@
 
       .error-message {
         display: flex;
-        justify-content: center;
         gap: 4px;
         padding: 8px;
 

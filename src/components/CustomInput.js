@@ -36,12 +36,9 @@ const CustomInput = ({
   }, [isFocused, value, hasErrors]);
 
   // handlers
-  const checkInputValid = useCallback(
-    (externalCondition = true) => {
-      setIsValid(!hasErrors && value !== '' && externalCondition);
-    },
-    [isFocused, value, hasErrors],
-  );
+  const checkInputValid = useCallback(() => {
+    setIsValid(!hasErrors && value !== '');
+  }, [isFocused, value, hasErrors]);
 
   const getInputStyle = () => {
     if (isFocused && !hasErrors && !isValid) return inputStatus.ON_FOCUS;
@@ -78,10 +75,12 @@ const CustomInput = ({
         {hasErrors && (
           <div className="error-content">
             <BsTriangleFill className="triangle" />
-            <div className="error-message">
-              <IoIosCloseCircleOutline />
-              <small>Campo de preenchimento obrigatório</small>
-            </div>
+            {errors.map((error) => (
+              <div className="error-message" key={`error-${error.code}`}>
+                <IoIosCloseCircleOutline />
+                <small>{error.message}</small>
+              </div>
+            ))}
           </div>
         )}
       </div>

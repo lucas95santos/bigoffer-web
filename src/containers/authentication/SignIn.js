@@ -1,4 +1,10 @@
 import React, { useState, useCallback } from 'react';
+// errors
+import AuthErrors from '../../errors/AuthErrors';
+// components
+import { CustomInput as Input } from '../../components';
+// icons
+import { FiMail, FiLock } from 'react-icons/fi';
 
 const SignIn = React.memo(
   ({
@@ -28,7 +34,7 @@ const SignIn = React.memo(
         if (errors) {
           Object.keys(errors).forEach((errorKey) => {
             if (errors[errorKey].includes(field)) {
-              fieldErrors.push(errorKey);
+              fieldErrors.push(AuthErrors[errorKey]);
             }
           });
         }
@@ -50,23 +56,26 @@ const SignIn = React.memo(
           onSubmit={(event) => onAuthenticationSubmit(event, signInData)}
           className="authentication__form"
         >
-          <input
-            type="email"
-            placeholder="Digite seu email aqui"
-            className={`${handleErrors('email').length && 'input-error'}`}
+          <Input
+            type="text"
+            placeholder="E-mail"
             value={signInData.email}
-            onChange={(event) => handleInputChange('email', event.target.value)}
+            onTextChange={(event) =>
+              handleInputChange('email', event.target.value)
+            }
+            icon={FiMail}
+            errors={handleErrors('email')}
           />
-          <input
+          <Input
             type="password"
-            placeholder="Digite sua senha aqui"
-            className={`mt_16 ${
-              handleErrors('password').length && 'input-error'
-            }`}
+            placeholder="Senha"
             value={signInData.password}
-            onChange={(event) =>
+            onTextChange={(event) =>
               handleInputChange('password', event.target.value)
             }
+            icon={FiLock}
+            errors={handleErrors('password')}
+            classes="mt_16"
           />
 
           <button type="submit" className="solid">
