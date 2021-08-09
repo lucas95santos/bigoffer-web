@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from 'react-loading';
 // components
-import { Card, Slider } from '../components';
+import { Card, Slider, CategoryBar } from '../components';
 // containers
 import { AuthenticationModal } from '../containers';
 
@@ -30,6 +30,7 @@ const Home = () => {
 
   return (
     <>
+      <CategoryBar />
       {!openedAuctions.length && !nextAuctions.length ? (
         <div className="loading-container">
           <Loading type="bubbles" color="#1565c0" height={72} width={72} />
