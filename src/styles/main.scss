@@ -1,10 +1,14 @@
+/* globals */
 @import './reset.scss';
 @import './variables.scss';
 @import './global.scss';
+/* components */
 @import './navbar.scss';
 @import './categoryBar.scss';
 @import './card.scss';
 @import './slider.scss';
 @import './customInput.scss';
 @import './modal.scss';
+/* screens */
 @import './home.scss';
+@import './settings.scss';

@@ -1,0 +1,75 @@
+.settings {
+  margin-top: $navbarHeight;
+
+  .settings__content {
+    margin-top: $mediumSpace;
+    display: flex;
+    gap: $mediumSpace;
+
+    .settings__menu,
+    .settings__info {
+      background: $whiteColor;
+      border: 1px solid $borderColor;
+      border-radius: 4px;
+    }
+
+    .settings__menu {
+      flex: 0.25;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          font-size: 0.9rem;
+          font-weight: 400;
+          letter-spacing: 0.4px;
+          color: #777777;
+          display: flex;
+          align-items: center;
+          gap: $smallSpace;
+          padding: $defaultSpace;
+          cursor: pointer;
+          transition: all linear 0.15s;
+
+          &:first-child {
+            border-radius: 4px 4px 0 0;
+          }
+
+          &:last-child {
+            border-radius: 0 0 4px 4px;
+          }
+
+          &:hover {
+            background: #f1f1f1;
+          }
+
+          &.active {
+            color: $primaryColor;
+
+            svg {
+              color: $primaryColor;
+            }
+          }
+
+          svg {
+            font-size: 1.1rem;
+            color: #888888;
+            transition: all linear 0.15s;
+          }
+        }
+      }
+    }
+
+    .settings__info {
+      flex: 1;
+      padding: $defaultSpace;
+
+      h2 {
+        color: $primaryColor;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
