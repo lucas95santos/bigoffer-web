@@ -1,4 +1,4 @@
 export * from './Home';
 export * from './SavedItems';
 export * from './Notifications';
-export * from './Settings';
+export * from './settings/Settings';
