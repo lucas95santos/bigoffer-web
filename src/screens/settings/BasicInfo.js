@@ -3,26 +3,36 @@ import React, { useState, useCallback } from 'react';
 import { CustomInput as Input } from '../../components';
 
 const BasicInfo = ({ settingsTitle }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [basicInfoData, setBasicInfoData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    street: '',
+    complement: '',
+    neighborhood: '',
+    zipCode: '',
+    city: '',
+    uf: '',
   });
 
   const handleInputChange = useCallback((field, value) => {
-    setBasicInfoData((oldBasicInfoData) => ({
-      ...oldBasicInfoData,
+    setFormData((oldFormData) => ({
+      ...oldFormData,
       [field]: value,
     }));
+  }, []);
+
+  const onSaveInfo = useCallback((event) => {
+    event.preventDefault();
+    // TODO: implementar lógica de salvamento das informações
   }, []);
 
   return (
     <div>
       <h2>{settingsTitle}</h2>
 
-      <form>
-        <fieldset className="personal-info">
+      <form onSubmit={onSaveInfo}>
+        <fieldset>
           <legend className="info-title">Informações pessoais</legend>
 
           <div className="input-container">
@@ -30,7 +40,7 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Nome"
               classes="a-third-size"
-              value={basicInfoData.name}
+              value={formData.name}
               onTextChange={(event) =>
                 handleInputChange('name', event.target.value)
               }
@@ -41,7 +51,7 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Email"
               classes="a-third-size"
-              value={basicInfoData.email}
+              value={formData.email}
               onTextChange={(event) =>
                 handleInputChange('email', event.target.value)
               }
@@ -54,7 +64,7 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Telefone"
               classes="a-quarter-size"
-              value={basicInfoData.phone}
+              value={formData.phone}
               onTextChange={(event) =>
                 handleInputChange('phone', event.target.value)
               }
@@ -63,7 +73,7 @@ const BasicInfo = ({ settingsTitle }) => {
             />
           </div>
         </fieldset>
-        <fieldset className="address-info">
+        <fieldset>
           <legend className="info-title">Endereço</legend>
 
           <div className="input-container">
@@ -71,9 +81,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Rua"
               classes="half-size"
-              value={basicInfoData.name}
+              value={formData.street}
               onTextChange={(event) =>
-                handleInputChange('name', event.target.value)
+                handleInputChange('street', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
@@ -82,9 +92,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Complemento"
               classes="a-quarter-size"
-              value={basicInfoData.email}
+              value={formData.complement}
               onTextChange={(event) =>
-                handleInputChange('email', event.target.value)
+                handleInputChange('complement', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
@@ -93,9 +103,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Bairro"
               classes="half-size"
-              value={basicInfoData.phone}
+              value={formData.neighborhood}
               onTextChange={(event) =>
-                handleInputChange('phone', event.target.value)
+                handleInputChange('neighborhood', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
@@ -106,9 +116,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="CEP"
               classes="a-quarter-size"
-              value={basicInfoData.name}
+              value={formData.zipCode}
               onTextChange={(event) =>
-                handleInputChange('name', event.target.value)
+                handleInputChange('zipCode', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
@@ -117,9 +127,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Cidade"
               classes="half-size"
-              value={basicInfoData.email}
+              value={formData.city}
               onTextChange={(event) =>
-                handleInputChange('email', event.target.value)
+                handleInputChange('city', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
@@ -128,9 +138,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Estado"
               classes="half-size"
-              value={basicInfoData.phone}
+              value={formData.uf}
               onTextChange={(event) =>
-                handleInputChange('phone', event.target.value)
+                handleInputChange('uf', event.target.value)
               }
               errors={[]}
               autocomplete="nope"
