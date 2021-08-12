@@ -4,6 +4,7 @@
   .settings__content {
     margin-top: $mediumSpace;
     display: flex;
+    align-items: flex-start;
     gap: $mediumSpace;
 
     .settings__menu,
@@ -69,6 +70,58 @@
         color: $primaryColor;
         font-size: 1.25rem;
         font-weight: 500;
+      }
+
+      .info-title {
+        color: $primaryColor;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        margin-bottom: $defaultSpace;
+      }
+
+      .input-container {
+        display: flex;
+        align-items: center;
+        gap: $defaultSpace;
+        margin-bottom: $defaultSpace;
+
+        .a-quarter-size {
+          width: calc(25% - 6px);
+        }
+
+        .a-third-size {
+          width: calc(33% - 6px);
+        }
+
+        .half-size {
+          flex: 0.5;
+        }
+
+        .f1-size {
+          flex: 1;
+        }
+
+        .f2-size {
+          flex: 2;
+        }
+
+        .f3-size {
+          flex: 3;
+        }
+      }
+
+      .personal-info,
+      .address-info {
+        margin-top: $mediumSpace;
+      }
+
+      form {
+        button {
+          max-height: 32px;
+          font-size: 0.875rem;
+          line-height: 5px;
+          margin-top: $defaultSpace;
+        }
       }
     }
   }

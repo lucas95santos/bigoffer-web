@@ -19,6 +19,7 @@ const CustomInput = ({
   errors,
   classes,
   bordered,
+  autocomplete,
   rest,
 }) => {
   // state
@@ -65,9 +66,12 @@ const CustomInput = ({
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onInvalid={() => setHasErrors(true)}
+        autoComplete={autocomplete}
         {...rest}
       />
-      <div className="error-container">
+      <div
+        className={`error-container ${!hasErrors ? 'invisible-container' : ''}`}
+      >
         <MdErrorOutline
           className={`error-icon ${!hasErrors ? 'invisible-icon' : ''}`}
         />
