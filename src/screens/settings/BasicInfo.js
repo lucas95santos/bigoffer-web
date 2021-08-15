@@ -1,6 +1,9 @@
 import React, { useState, useCallback } from 'react';
 // components
 import { CustomInput as Input } from '../../components';
+// icons
+import { FiMail, FiUser, FiPhone } from 'react-icons/fi';
+import { RiProfileLine } from 'react-icons/ri';
 
 const BasicInfo = ({ settingsTitle }) => {
   const [formData, setFormData] = useState({
@@ -44,6 +47,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('name', event.target.value)
               }
+              icon={FiUser}
               errors={[]}
               autocomplete="nope"
             />
@@ -55,6 +59,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('email', event.target.value)
               }
+              icon={FiMail}
               errors={[]}
               autocomplete="nope"
             />
@@ -68,6 +73,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('phone', event.target.value)
               }
+              icon={FiPhone}
               errors={[]}
               autocomplete="nope"
             />
@@ -85,6 +91,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('street', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />
@@ -96,6 +103,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('complement', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />
@@ -107,6 +115,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('neighborhood', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />
@@ -120,6 +129,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('zipCode', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />
@@ -131,6 +141,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('city', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />
@@ -142,6 +153,7 @@ const BasicInfo = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('uf', event.target.value)
               }
+              icon={RiProfileLine}
               errors={[]}
               autocomplete="nope"
             />

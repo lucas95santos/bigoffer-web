@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
 // components
 import { CustomInput as Input } from '../../components';
+// icons
+import { FiLock } from 'react-icons/fi';
 
 const Security = ({ settingsTitle }) => {
   const [formData, setFormData] = useState({
@@ -38,6 +40,7 @@ const Security = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('currentPassword', event.target.value)
               }
+              icon={FiLock}
               errors={[]}
               autocomplete="nope"
             />
@@ -51,6 +54,7 @@ const Security = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('password', event.target.value)
               }
+              icon={FiLock}
               errors={[]}
               autocomplete="nope"
             />
@@ -64,6 +68,7 @@ const Security = ({ settingsTitle }) => {
               onTextChange={(event) =>
                 handleInputChange('confirmPassword', event.target.value)
               }
+              icon={FiLock}
               errors={[]}
               autocomplete="nope"
             />
