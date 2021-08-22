@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 // icons
 import { MdErrorOutline } from 'react-icons/md';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
@@ -13,18 +13,20 @@ const inputStatus = {
 const CustomInput = ({
   icon: Icon,
   type,
+  name,
   value,
   onTextChange,
+  onFocus,
   placeholder,
   errors,
   classes,
   bordered,
   autocomplete,
-  rest,
+  ...rest
 }) => {
   // state
   const [isFocused, setFocus] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  // const [isValid, setIsValid] = useState(false);
   const [hasErrors, setHasErrors] = useState(errors.length > 0);
 
   // side effects
@@ -32,21 +34,21 @@ const CustomInput = ({
     setHasErrors(errors.length > 0);
   }, [errors]);
 
-  useEffect(() => {
-    checkInputValid();
-  }, [isFocused, value, hasErrors]);
+  // useEffect(() => {
+  //   checkInputValid();
+  // }, [isFocused, value, hasErrors]);
 
   // handlers
-  const checkInputValid = useCallback(() => {
-    setIsValid(!hasErrors && value !== '');
-  }, [isFocused, value, hasErrors]);
+  // const checkInputValid = useCallback(() => {
+  //   setIsValid(!hasErrors && value !== '');
+  // }, [isFocused, value, hasErrors]);
 
   const getInputStyle = () => {
-    if (isFocused && !hasErrors && !isValid) return inputStatus.ON_FOCUS;
+    if (isFocused && !hasErrors) return inputStatus.ON_FOCUS;
 
     if (hasErrors) return inputStatus.ON_ERROR;
 
-    if (isValid) return inputStatus.ON_VALID;
+    // if (isValid) return inputStatus.ON_VALID;
 
     return '';
   };
@@ -60,11 +62,18 @@ const CustomInput = ({
       {Icon && <Icon />}
       <input
         type={type}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onTextChange}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        onFocus={(event) => {
+          setFocus(true);
+          if (onFocus) onFocus(event.target.name);
+        }}
+        onBlur={() => {
+          setFocus(false);
+          if (onFocus) onFocus('');
+        }}
         onInvalid={() => setHasErrors(true)}
         autoComplete={autocomplete}
         {...rest}
