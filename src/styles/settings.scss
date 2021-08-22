@@ -1,3 +1,5 @@
+@import 'react-credit-cards/lib/styles.scss';
+
 .settings {
   margin-top: $navbarHeight;
 
@@ -167,6 +169,34 @@
           font-size: 0.875rem;
           line-height: 5px;
           margin-top: $defaultSpace;
+        }
+      }
+
+      .payment-container {
+        display: flex;
+        align-items: center;
+        gap: $largeSpace;
+        margin-top: $mediumSpace;
+
+        fieldset {
+          margin: 0;
+        }
+
+        @media screen and (max-width: 680px) {
+          flex-direction: column;
+          align-items: unset;
+          gap: $mediumSpace;
+
+          .input-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: $defaultSpace;
+          }
+
+          .half-size {
+            flex: 0.5 !important;
+          }
         }
       }
     }
