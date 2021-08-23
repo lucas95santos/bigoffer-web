@@ -37,6 +37,11 @@
           flex-wrap: wrap;
         }
 
+        @media screen and (max-width: 375px) {
+          flex-direction: column;
+          flex-wrap: nowrap;
+        }
+
         li {
           font-size: 0.9rem;
           font-weight: 400;
@@ -79,6 +84,7 @@
     }
 
     .settings__info {
+      min-height: 152px;
       flex: 1;
       padding: $defaultSpace;
 
@@ -172,19 +178,85 @@
         }
       }
 
-      .payment-container {
+      .add-payment,
+      .payment-options {
         display: flex;
-        align-items: center;
         gap: $largeSpace;
         margin-top: $mediumSpace;
+      }
 
+      .payment-options {
+        width: 50%;
+        flex-direction: column;
+        gap: $defaultSpace;
+
+        @media screen and (max-width: 680px) {
+          width: 100%;
+        }
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: $defaultSpace;
+          border: 1px solid $borderColor;
+          padding: $defaultSpace;
+
+          @media screen and (max-width: 400px) {
+            flex-direction: column;
+          }
+
+          &.new-option {
+            padding: 0;
+            border: none;
+
+            button {
+              max-height: 32px;
+              font-size: 0.875rem;
+              color: $primaryColor;
+              line-height: 5px;
+              margin-top: $defaultSpace;
+
+              &:hover {
+                color: $whiteColor;
+              }
+            }
+          }
+
+          .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $defaultSpace;
+
+            .option__number {
+              color: #777777;
+              font-weight: 500;
+
+              strong {
+                letter-spacing: 1px;
+              }
+            }
+
+            small {
+              color: #999999;
+            }
+          }
+
+          button {
+            font-size: 0.875rem;
+            color: $textErrorColor;
+          }
+        }
+      }
+
+      .add-payment {
         fieldset {
           margin: 0;
         }
 
         @media screen and (max-width: 680px) {
           flex-direction: column;
-          align-items: unset;
           gap: $mediumSpace;
 
           .input-container {
@@ -197,6 +269,17 @@
           .half-size {
             flex: 0.5 !important;
           }
+        }
+
+        .credit-card {
+          @media screen and (max-width: 680px) {
+            display: none;
+          }
+        }
+
+        .add-payment-footer {
+          display: flex;
+          gap: $defaultSpace;
         }
       }
     }

@@ -19,7 +19,7 @@ input {
   &[type='password'] {
     &::placeholder {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
+      font-size: 1rem;
       letter-spacing: normal;
     }
 
@@ -99,6 +99,16 @@ button {
         background: $transparentColor;
         color: $primaryColor;
         filter: brightness(100%);
+      }
+    }
+
+    &.cancel {
+      border: $btnBorderOutlinedGrey;
+      color: #777777;
+
+      &:hover {
+        background: #999999;
+        color: $whiteColor;
       }
     }
   }
