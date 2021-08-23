@@ -39,6 +39,17 @@ const Payment = ({ settingsTitle }) => {
     // TODO: implementar lógica da opção de pagamento
   }, []);
 
+  const onCancelPaymentOption = useCallback(() => {
+    setCreditCardData({
+      cvc: '',
+      expiry: '',
+      name: '',
+      number: '',
+    });
+
+    setCurrentContent(payment.LIST_OPTIONS);
+  }, []);
+
   return (
     <div>
       <h2>{settingsTitle}</h2>
@@ -123,7 +134,7 @@ const Payment = ({ settingsTitle }) => {
               <button
                 type="button"
                 className="outlined cancel"
-                onClick={() => setCurrentContent(payment.LIST_OPTIONS)}
+                onClick={onCancelPaymentOption}
               >
                 Cancelar
               </button>
