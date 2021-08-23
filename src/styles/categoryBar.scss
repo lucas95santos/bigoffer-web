@@ -3,6 +3,11 @@
   background: $primaryColor;
   height: 40px;
 
+  @media screen and (max-width: 950px) {
+    display: none;
+    pointer-events: none;
+  }
+
   .category-bar__item {
     height: 100%;
     display: flex;
