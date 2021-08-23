@@ -76,6 +76,7 @@ const Payment = ({ settingsTitle }) => {
                   onFocus={setFocus}
                   icon={AiOutlineIdcard}
                   errors={[]}
+                  uppercase
                   autocomplete="nope"
                 />
               </div>

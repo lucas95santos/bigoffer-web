@@ -21,6 +21,7 @@ const CustomInput = ({
   errors,
   classes,
   bordered,
+  uppercase,
   autocomplete,
   ...rest
 }) => {
@@ -55,7 +56,7 @@ const CustomInput = ({
 
   return (
     <div
-      className={`custom-input ${getInputStyle()} ${
+      className={`custom-input ${uppercase && 'uppercase'} ${getInputStyle()} ${
         bordered && 'full-border'
       } ${classes}`}
     >
