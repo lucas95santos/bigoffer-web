@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 // components
-import BasicInfo from './BasicInfo';
-import Security from './Security';
-import Payment from './Payment';
+import BasicInfo from '../containers/settings/BasicInfo';
+import Security from '../containers/settings/Security';
+import Payment from '../containers/settings/Payment';
 // icons
 import { RiLockPasswordLine, RiProfileLine } from 'react-icons/ri';
 import { FiCreditCard } from 'react-icons/fi';
