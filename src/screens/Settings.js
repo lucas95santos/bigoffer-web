@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from 'react';
 // components
-import BasicInfo from '../containers/settings/BasicInfo';
-import Security from '../containers/settings/Security';
-import Payment from '../containers/settings/Payment';
+import { BasicInfo, Security, Payment, Session } from '../containers/settings';
 // icons
-import { RiLockPasswordLine, RiProfileLine } from 'react-icons/ri';
+import {
+  RiLockPasswordLine,
+  RiProfileLine,
+  RiAccountCircleLine,
+} from 'react-icons/ri';
 import { FiCreditCard } from 'react-icons/fi';
 
 const settings = {
@@ -22,6 +24,11 @@ const settings = {
     code: 2,
     title: 'Opções de pagamento',
     icon: <FiCreditCard />,
+  },
+  SESSION: {
+    code: 3,
+    title: 'Sessão',
+    icon: <RiAccountCircleLine />,
   },
 };
 
@@ -56,6 +63,8 @@ const Settings = () => {
         return <Security settingsTitle={settings.SECURITY.title} />;
       case settings.PAYMENT.code:
         return <Payment settingsTitle={settings.PAYMENT.title} />;
+      case settings.SESSION.code:
+        return <Session settingsTitle={settings.SESSION.title} />;
       case settings.BASIC_INFO.code:
       default:
         return <BasicInfo settingsTitle={settings.BASIC_INFO.title} />;

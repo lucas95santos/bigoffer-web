@@ -168,4 +168,4 @@ const BasicInfo = ({ settingsTitle }) => {
   );
 };
 
-export default BasicInfo;
+export { BasicInfo };

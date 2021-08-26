@@ -67,6 +67,10 @@ button {
     &:hover {
       filter: brightness(90%);
     }
+
+    &.danger {
+      background: $textErrorColor;
+    }
   }
 
   &.outlined {

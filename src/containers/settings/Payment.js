@@ -186,4 +186,4 @@ const Payment = ({ settingsTitle }) => {
   );
 };
 
-export default Payment;
+export { Payment };

@@ -84,7 +84,7 @@
     }
 
     .settings__info {
-      min-height: 152px;
+      min-height: 238px;
       flex: 1;
       padding: $defaultSpace;
 
@@ -280,6 +280,25 @@
         .add-payment-footer {
           display: flex;
           gap: $defaultSpace;
+        }
+      }
+
+      .session-area {
+        margin-top: $mediumSpace;
+
+        .sign-out {
+          display: flex;
+          align-items: center;
+          gap: $defaultSpace;
+
+          p {
+            color: $textDarkColor;
+          }
+
+          button {
+            max-height: 32px;
+            line-height: 5px;
+          }
         }
       }
     }

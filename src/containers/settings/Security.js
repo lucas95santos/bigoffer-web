@@ -83,4 +83,4 @@ const Security = ({ settingsTitle }) => {
   );
 };
 
-export default Security;
+export { Security };
