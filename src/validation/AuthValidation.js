@@ -1,5 +1,10 @@
+const authentication = {
+  SIGN_IN: 0,
+  SIGN_UP: 1,
+};
+
 class AuthValidation {
-  static validate(authenticationData, requiredFields) {
+  static validate(authenticationData, requiredFields, authenticationType) {
     let errors = null;
 
     // verificando se todos os campos obrigatórios foram preenchidos
@@ -33,7 +38,10 @@ class AuthValidation {
       };
 
     // verificando se as senhas são iguais
-    if (authenticationData.password !== authenticationData.confirmPassword)
+    if (
+      authenticationType === authentication.SIGN_UP &&
+      authenticationData.password !== authenticationData.confirmPassword
+    )
       errors = {
         ...errors,
         differentPasswords: ['confirmPassword'],

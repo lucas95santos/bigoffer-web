@@ -33,7 +33,7 @@ const AuthenticationModal = () => {
   }, [shouldShowAuthenticationModal]);
 
   // handlers
-  const onAuthenticationSubmit = (event, authenticationData) => {
+  const onAuthenticationSubmit = async (event, authenticationData) => {
     event.preventDefault();
 
     const requiredFields =
@@ -41,7 +41,11 @@ const AuthenticationModal = () => {
         ? ['email', 'password']
         : ['name', 'email', 'password', 'confirmPassword'];
 
-    const errors = AuthValidation.validate(authenticationData, requiredFields);
+    const errors = AuthValidation.validate(
+      authenticationData,
+      requiredFields,
+      authenticationType,
+    );
 
     if (!errors) {
       // TODO: implementar envio do formulário
