@@ -9,19 +9,23 @@ import { MobileMenu } from './MobileMenu';
 import { CgHome } from 'react-icons/cg';
 import { FiBookmark, FiBell, FiMenu } from 'react-icons/fi';
 import { HiOutlineCog } from 'react-icons/hi';
-// import { FaUserAlt } from 'react-icons/fa'; -> Habilitar quando o usuário estiver logado
+import { FaUserAlt } from 'react-icons/fa';
 // assets
 import logoImg from '../assets/logo.png';
 
 const NavBar = () => {
-  const globalContext = useContext(GlobalContext);
-  const location = useLocation();
+  // context
+  const { showAuthenticationModal, authenticatedUser } =
+    useContext(GlobalContext);
 
+  // state
   const [shouldShowMobileMenu, showMobileMenu] = useState(false);
 
-  const onAccessClick = () => {
-    const { showAuthenticationModal } = globalContext;
+  // location
+  const location = useLocation();
 
+  // handlers
+  const onAccessClick = () => {
     showAuthenticationModal(true);
   };
 
@@ -74,24 +78,28 @@ const NavBar = () => {
                   Configurações
                 </Link>
               </li>
-              <li className="menu__item">
-                <button
-                  type="button"
-                  className="outlined"
-                  onClick={onAccessClick}
-                >
-                  Acessar
-                </button>
-              </li>
-              {/* Habilitar quando o usuário estiver logado */}
-              {/* <li className="menu__item">
-                <div className="user-area">
-                  <div className="user-area__avatar">
-                    <FaUserAlt />
+              {authenticatedUser ? (
+                <li className="menu__item">
+                  <div className="user-area">
+                    <div className="user-area__avatar">
+                      <FaUserAlt />
+                    </div>
+                    <p className="user-area__fullname">
+                      {authenticatedUser.name}
+                    </p>
                   </div>
-                  <p className="user-area__fullname">John Doe</p>
-                </div>
-              </li> */}
+                </li>
+              ) : (
+                <li className="menu__item">
+                  <button
+                    type="button"
+                    className="outlined"
+                    onClick={onAccessClick}
+                  >
+                    Acessar
+                  </button>
+                </li>
+              )}
             </ul>
 
             <div className="navbar__menu--collapse">
