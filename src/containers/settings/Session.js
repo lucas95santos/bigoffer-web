@@ -1,12 +1,20 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
+// global context
+import { GlobalContext } from '../../contexts/global';
+// helpers
+import { Authentication } from '../../helpers';
 
 const Session = ({ settingsTitle }) => {
+  // context
+  const { handleAuthenticatedUser } = useContext(GlobalContext);
+
   // state
   const [shouldShowSignOutButton, showSignOutButton] = useState(false);
 
   // handlers
-  const onSessionEnd = useCallback(() => {
-    // TODO: implementar lógica do signout
+  const onSessionEnd = useCallback(async () => {
+    await Authentication.signOut();
+    handleAuthenticatedUser();
   }, []);
 
   return (

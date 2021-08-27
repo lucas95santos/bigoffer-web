@@ -224,5 +224,52 @@
       "date": "2021-07-28 08:30:00",
       "createdAt": "2021-07-15 17:30:00"
     }
+  ],
+  "users": [
+    {
+      "id": "2f10e8a3-174d-41a9-ab2e-04e294dc95b2",
+      "name": "John Doe",
+      "email": "john.doe@gmail.com",
+      "password": "12345678",
+      "phone": "67988992200",
+      "address": {
+        "street": "Rua das Flores",
+        "number": "100",
+        "complement": null,
+        "neighborhood": "Centro",
+        "zipCode": "79080190",
+        "city": "Embu das Artes",
+        "state": "São Paulo"
+      },
+      "paymentOptions": [
+        {
+          "number": "5298661191412468",
+          "name": "JOHN DOE",
+          "expiry": "23-07",
+          "verificationCode": "603"
+        }
+      ],
+      "createdAt": "2021-08-26",
+      "updatedAt": "2021-08-26"
+    },
+    {
+      "id": "68216cc9-46c4-4b7d-a149-cf67d8914b8f",
+      "name": "Jane Doe",
+      "email": "jane.doe@gmail.com",
+      "password": "12345678",
+      "phone": "67988992200",
+      "address": {
+        "street": "Rua das Flores",
+        "number": "100",
+        "complement": null,
+        "neighborhood": "Centro",
+        "zipCode": "79080190",
+        "city": "Embu das Artes",
+        "state": "São Paulo"
+      },
+      "paymentOptions": null,
+      "createdAt": "2021-08-26",
+      "updatedAt": "2021-08-26"
+    }
   ]
 }

@@ -7,6 +7,8 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 // validation
 import { AuthValidation } from '../../validation';
+// helpers
+import { Authentication } from '../../helpers';
 
 const authentication = {
   SIGN_IN: 0,
@@ -15,8 +17,11 @@ const authentication = {
 
 const AuthenticationModal = () => {
   // context
-  const { shouldShowAuthenticationModal, showAuthenticationModal } =
-    useContext(GlobalContext);
+  const {
+    shouldShowAuthenticationModal,
+    showAuthenticationModal,
+    handleAuthenticatedUser,
+  } = useContext(GlobalContext);
 
   // state
   const [authenticationType, setAuthenticationType] = useState(
@@ -50,6 +55,18 @@ const AuthenticationModal = () => {
     if (!errors) {
       // TODO: implementar envio do formulário
       setAuthenticationErrors(null);
+
+      const authenticatedUser = await Authentication.signIn(authenticationData);
+
+      if (!authenticatedUser) {
+        // mostrar mensagem de errors
+        // eslint-disable-next-line no-alert
+        alert('Usuário ou senha incorreto');
+      } else {
+        // setar usuário no contexto
+        handleAuthenticatedUser(authenticatedUser);
+        showAuthenticationModal(false);
+      }
     } else {
       setAuthenticationErrors(errors);
     }
