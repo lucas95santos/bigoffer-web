@@ -9,6 +9,7 @@ const GlobalProvider = ({ children }) => {
   const [shouldShowAuthenticationModal, showAuthenticationModal] =
     useState(false);
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
+  const [routeToRedirect, setRouteToRedirect] = useState(null);
 
   // side effects
   useEffect(() => {
@@ -35,6 +36,8 @@ const GlobalProvider = ({ children }) => {
         showAuthenticationModal,
         authenticatedUser,
         handleAuthenticatedUser,
+        routeToRedirect,
+        setRouteToRedirect,
       }}
     >
       {children}

@@ -59,6 +59,34 @@ button {
   border-radius: 4px;
   transition: all linear 0.2s;
 
+  &.menu-button {
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+    gap: $smallSpace;
+    padding: 0 !important;
+    background: transparent;
+    color: #bbbbbb;
+    text-transform: unset !important;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    transition: all linear 0.15s;
+
+    &.active {
+      color: $primaryColor;
+    }
+
+    svg {
+      font-size: 1.3rem;
+    }
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
   &.solid {
     background: $primaryColor;
     border: 2px solid $transparentColor;

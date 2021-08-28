@@ -1,5 +1,5 @@
 import React, { useContext, useCallback, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
 // components
@@ -15,18 +15,28 @@ import logoImg from '../assets/logo.png';
 
 const NavBar = () => {
   // context
-  const { showAuthenticationModal, authenticatedUser } =
+  const { showAuthenticationModal, authenticatedUser, setRouteToRedirect } =
     useContext(GlobalContext);
 
   // state
   const [shouldShowMobileMenu, showMobileMenu] = useState(false);
 
-  // location
+  // router
   const location = useLocation();
+  const history = useHistory();
 
   // handlers
   const onAccessClick = () => {
     showAuthenticationModal(true);
+  };
+
+  const goToRoute = (route) => {
+    if (authenticatedUser) {
+      history.push(`/${route}`);
+    } else {
+      setRouteToRedirect(route);
+      showAuthenticationModal(true);
+    }
   };
 
   const isRouteActive = useCallback(
@@ -44,39 +54,51 @@ const NavBar = () => {
             </Link>
 
             <ul className="navbar__menu">
-              <li className={`menu__item ${isRouteActive('') && 'active'}`}>
-                <Link to="/">
+              <li className="menu__item">
+                <button
+                  type="button"
+                  className={`menu-button ${isRouteActive('') && 'active'}`}
+                  onClick={() => goToRoute('')}
+                >
                   <CgHome />
                   Início
-                </Link>
+                </button>
               </li>
-              <li
-                className={`menu__item ${isRouteActive('salvos') && 'active'}`}
-              >
-                <Link to="/salvos">
+              <li className="menu__item">
+                <button
+                  type="button"
+                  className={`menu-button ${
+                    isRouteActive('salvos') && 'active'
+                  }`}
+                  onClick={() => goToRoute('salvos')}
+                >
                   <FiBookmark />
                   Itens salvos
-                </Link>
+                </button>
               </li>
-              <li
-                className={`menu__item ${
-                  isRouteActive('notificacoes') && 'active'
-                }`}
-              >
-                <Link to="/notificacoes">
+              <li className="menu__item">
+                <button
+                  type="button"
+                  className={`menu-button ${
+                    isRouteActive('notificacoes') && 'active'
+                  }`}
+                  onClick={() => goToRoute('notificacoes')}
+                >
                   <FiBell />
                   Notificações
-                </Link>
+                </button>
               </li>
-              <li
-                className={`menu__item ${
-                  isRouteActive('configuracoes') && 'active'
-                }`}
-              >
-                <Link to="/configuracoes">
+              <li className="menu__item">
+                <button
+                  type="button"
+                  className={`menu-button ${
+                    isRouteActive('configuracoes') && 'active'
+                  }`}
+                  onClick={() => goToRoute('configuracoes')}
+                >
                   <HiOutlineCog />
                   Configurações
-                </Link>
+                </button>
               </li>
               {authenticatedUser ? (
                 <li className="menu__item">

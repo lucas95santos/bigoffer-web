@@ -1,9 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+// helpers
+import { Storage } from '../helpers';
 
-// TODO: implementar lógica de autenticação para rotas privadas
-const RouteWrapper = ({ component: Component, path, ...rest }) => (
-  <Route path={path} component={Component} {...rest} />
-);
+const RouteWrapper = ({
+  component: Component,
+  privateRoute,
+  path,
+  ...rest
+}) => {
+  const authenticatedUser = Storage.getItem('authenticated_user');
+
+  if (!authenticatedUser && privateRoute) {
+    return <Redirect to="/" />;
+  }
+
+  return <Route path={path} component={Component} {...rest} />;
+};
 
 export default RouteWrapper;

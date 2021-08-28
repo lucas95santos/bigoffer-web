@@ -17,9 +17,9 @@ const Routes = () => (
     <ScreenWrapper>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/salvos" component={SavedItems} />
-        <Route path="/notificacoes" component={Notifications} />
-        <Route path="/configuracoes" component={Settings} />
+        <Route path="/salvos" component={SavedItems} privateRoute />
+        <Route path="/notificacoes" component={Notifications} privateRoute />
+        <Route path="/configuracoes" component={Settings} privateRoute />
       </Switch>
     </ScreenWrapper>
   </>

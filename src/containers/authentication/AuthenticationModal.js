@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../../contexts/global';
 // components
@@ -21,6 +22,8 @@ const AuthenticationModal = () => {
     shouldShowAuthenticationModal,
     showAuthenticationModal,
     handleAuthenticatedUser,
+    routeToRedirect,
+    setRouteToRedirect,
   } = useContext(GlobalContext);
 
   // state
@@ -28,6 +31,9 @@ const AuthenticationModal = () => {
     authentication.SIGN_IN,
   );
   const [authenticationErrors, setAuthenticationErrors] = useState(null);
+
+  // router
+  const history = useHistory();
 
   // side effects
   useEffect(() => {
@@ -66,6 +72,11 @@ const AuthenticationModal = () => {
         // setar usuário no contexto
         handleAuthenticatedUser(authenticatedUser);
         showAuthenticationModal(false);
+
+        if (routeToRedirect) {
+          history.push(`/${routeToRedirect}`);
+          setRouteToRedirect(null);
+        }
       }
     } else {
       setAuthenticationErrors(errors);

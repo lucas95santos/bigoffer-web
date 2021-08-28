@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../../contexts/global';
 // helpers
@@ -8,6 +9,9 @@ const Session = ({ settingsTitle }) => {
   // context
   const { handleAuthenticatedUser } = useContext(GlobalContext);
 
+  // router
+  const history = useHistory();
+
   // state
   const [shouldShowSignOutButton, showSignOutButton] = useState(false);
 
@@ -15,6 +19,7 @@ const Session = ({ settingsTitle }) => {
   const onSessionEnd = useCallback(async () => {
     await Authentication.signOut();
     handleAuthenticatedUser();
+    history.push('/');
   }, []);
 
   return (
