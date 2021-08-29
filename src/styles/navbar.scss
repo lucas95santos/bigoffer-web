@@ -133,33 +133,25 @@
             border: 1px solid $borderColor;
             border-radius: 8px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #bbbbbb;
+            text-decoration: none;
+            transition: all linear 0.15s;
+
+            svg {
+              font-size: 1.5rem;
+            }
 
             &:hover {
-              a {
-                color: $primaryColor;
-              }
+              color: $primaryColor;
             }
 
             &.active {
               border-color: $primaryColor;
-
-              a {
-                color: $primaryColor;
-              }
-            }
-
-            a {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              gap: 8px;
-              color: #bbbbbb;
-              text-decoration: none;
-              transition: all linear 0.15s;
-
-              svg {
-                font-size: 1.5rem;
-              }
+              color: $primaryColor;
             }
           }
         }

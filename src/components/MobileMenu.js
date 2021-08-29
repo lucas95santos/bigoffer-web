@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useCallback, useContext, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
 // icons
@@ -10,21 +8,45 @@ import { CgHome } from 'react-icons/cg';
 import { FiBookmark, FiBell } from 'react-icons/fi';
 
 const MobileMenu = ({ visible, onClose }) => {
+  // context
   const globalContext = useContext(GlobalContext);
-  const location = useLocation();
+  const {
+    authenticatedUser,
+    changeAppState,
+    setRouteToRedirect,
+    showAuthenticationModal,
+  } = globalContext;
 
+  // state
   const [isOut, setIsOut] = useState(false);
+
+  // router
+  const location = useLocation();
+  const history = useHistory();
+
+  // handlers
+  const onAccessClick = () => {
+    showAuthenticationModal(true);
+  };
+
+  const goToRoute = (route) => {
+    if (authenticatedUser) {
+      if (location.pathname !== `/${route}`) {
+        changeAppState('global', 'LOADING');
+        history.push(`/${route}`);
+      }
+    } else {
+      setRouteToRedirect(route);
+      showAuthenticationModal(true);
+    }
+
+    handleClose();
+  };
 
   const isRouteActive = useCallback(
     (route) => location.pathname === `/${route}`,
     [location],
   );
-
-  const onAccessClick = () => {
-    const { showAuthenticationModal } = globalContext;
-
-    showAuthenticationModal(true);
-  };
 
   const handleClose = () => {
     setIsOut(true);
@@ -58,39 +80,31 @@ const MobileMenu = ({ visible, onClose }) => {
       <ul className="mobile-menu__content">
         <li
           className={`menu__item ${isRouteActive('') && 'active'}`}
-          onClick={handleClose}
+          onClick={() => goToRoute('')}
         >
-          <Link to="/">
-            <CgHome />
-            Início
-          </Link>
+          <CgHome />
+          Início
         </li>
         <li
           className={`menu__item ${isRouteActive('salvos') && 'active'}`}
-          onClick={handleClose}
+          onClick={() => goToRoute('salvos')}
         >
-          <Link to="/salvos">
-            <FiBookmark />
-            Itens salvos
-          </Link>
+          <FiBookmark />
+          Itens salvos
         </li>
         <li
           className={`menu__item ${isRouteActive('notificacoes') && 'active'}`}
-          onClick={handleClose}
+          onClick={() => goToRoute('notificacoes')}
         >
-          <Link to="/notificacoes">
-            <FiBell />
-            Notificações
-          </Link>
+          <FiBell />
+          Notificações
         </li>
         <li
           className={`menu__item ${isRouteActive('configuracoes') && 'active'}`}
-          onClick={handleClose}
+          onClick={() => goToRoute('configuracoes')}
         >
-          <Link to="/configuracoes">
-            <HiOutlineCog />
-            Configurações
-          </Link>
+          <HiOutlineCog />
+          Configurações
         </li>
       </ul>
 
