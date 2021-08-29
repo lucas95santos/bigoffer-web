@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
+// context
+import { GlobalContext } from '../contexts/global';
 // components
 import { BasicInfo, Security, Payment, Session } from '../containers/settings';
 // icons
@@ -33,10 +35,19 @@ const settings = {
 };
 
 const Settings = () => {
+  // context
+  const globalContext = useContext(GlobalContext);
+  const { changeAppState } = globalContext;
+
   // state
   const [currentSetting, setCurrentSetting] = useState(
     settings.BASIC_INFO.code,
   );
+
+  // side effects
+  useEffect(() => {
+    changeAppState('global', 'READY');
+  }, []);
 
   // renders
   const renderSettingsMenu = useCallback(

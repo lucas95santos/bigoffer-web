@@ -15,8 +15,12 @@ import logoImg from '../assets/logo.png';
 
 const NavBar = () => {
   // context
-  const { showAuthenticationModal, authenticatedUser, setRouteToRedirect } =
-    useContext(GlobalContext);
+  const {
+    showAuthenticationModal,
+    authenticatedUser,
+    setRouteToRedirect,
+    changeAppState,
+  } = useContext(GlobalContext);
 
   // state
   const [shouldShowMobileMenu, showMobileMenu] = useState(false);
@@ -32,7 +36,10 @@ const NavBar = () => {
 
   const goToRoute = (route) => {
     if (authenticatedUser) {
-      history.push(`/${route}`);
+      if (location.pathname !== `/${route}`) {
+        changeAppState('global', 'LOADING');
+        history.push(`/${route}`);
+      }
     } else {
       setRouteToRedirect(route);
       showAuthenticationModal(true);

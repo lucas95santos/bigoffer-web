@@ -5,3 +5,4 @@ export * from './Slider';
 export * from './Modal';
 export * from './MobileMenu';
 export * from './CustomInput';
+export * from './LoadingWrapper';

@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Loading from 'react-loading';
+// context
+import { GlobalContext } from '../contexts/global';
 // components
 import { Card, Slider, CategoryBar } from '../components';
 // containers
@@ -13,11 +15,17 @@ const fetchItems = async (route) => {
 };
 
 const Home = () => {
+  // context
+  const globalContext = useContext(GlobalContext);
+  const { changeAppState } = globalContext;
+
+  // state
   const [openedAuctions, setOpenedAuctions] = useState([]);
   const [nextAuctions, setNextAuctions] = useState([]);
 
   useEffect(() => {
     getAuctions();
+    changeAppState('global', 'READY');
   }, []);
 
   const getAuctions = async () => {

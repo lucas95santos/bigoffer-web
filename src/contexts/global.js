@@ -10,9 +10,11 @@ const GlobalProvider = ({ children }) => {
     useState(false);
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
   const [routeToRedirect, setRouteToRedirect] = useState(null);
+  const [appState, setAppState] = useState({});
 
   // side effects
   useEffect(() => {
+    changeAppState('global', 'LOADING');
     const user = Storage.getItem('authenticated_user');
 
     if (user) {
@@ -29,6 +31,19 @@ const GlobalProvider = ({ children }) => {
     setAuthenticatedUser(user);
   }, []);
 
+  const changeAppState = (domain, status) => {
+    if (domain === 'global' && status === 'LOADING') {
+      setAppState({
+        global: 'LOADING',
+      });
+    } else {
+      setAppState((oldState) => ({
+        ...oldState,
+        [domain]: status,
+      }));
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -38,6 +53,8 @@ const GlobalProvider = ({ children }) => {
         handleAuthenticatedUser,
         routeToRedirect,
         setRouteToRedirect,
+        appState,
+        changeAppState,
       }}
     >
       {children}
