@@ -5,17 +5,17 @@ import { CustomInput as Input } from '../../components';
 import { FiMail, FiUser, FiPhone } from 'react-icons/fi';
 import { RiProfileLine } from 'react-icons/ri';
 
-const BasicInfo = ({ settingsTitle }) => {
+const BasicInfo = ({ settingsTitle, user }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    street: '',
-    complement: '',
-    neighborhood: '',
-    zipCode: '',
-    city: '',
-    uf: '',
+    name: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    street: user?.address?.street || '',
+    complement: user?.address?.complement || '',
+    neighborhood: user?.address?.neighborhood || '',
+    zipCode: user?.address?.zipCode || '',
+    city: user?.address?.city || '',
+    state: user?.address?.state || '',
   });
 
   const handleInputChange = useCallback((field, value) => {
@@ -149,9 +149,9 @@ const BasicInfo = ({ settingsTitle }) => {
               type="text"
               placeholder="Estado"
               classes="half-size"
-              value={formData.uf}
+              value={formData.state}
               onTextChange={(event) =>
-                handleInputChange('uf', event.target.value)
+                handleInputChange('state', event.target.value)
               }
               icon={RiProfileLine}
               errors={[]}

@@ -37,7 +37,7 @@ const settings = {
 const Settings = () => {
   // context
   const globalContext = useContext(GlobalContext);
-  const { changeAppState } = globalContext;
+  const { changeAppState, authenticatedUser } = globalContext;
 
   // state
   const [currentSetting, setCurrentSetting] = useState(
@@ -78,7 +78,12 @@ const Settings = () => {
         return <Session settingsTitle={settings.SESSION.title} />;
       case settings.BASIC_INFO.code:
       default:
-        return <BasicInfo settingsTitle={settings.BASIC_INFO.title} />;
+        return (
+          <BasicInfo
+            settingsTitle={settings.BASIC_INFO.title}
+            user={authenticatedUser}
+          />
+        );
     }
   }, [currentSetting]);
 
