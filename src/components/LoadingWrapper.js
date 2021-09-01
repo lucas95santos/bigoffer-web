@@ -9,7 +9,7 @@ const LoadingWrapper = ({ visible, children }) => {
 
   // side effects
   useEffect(() => {
-    const loadingTime = 1500;
+    const loadingTime = 1000;
 
     if (!visible) {
       showContent(true);
