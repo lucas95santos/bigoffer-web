@@ -16,7 +16,7 @@ const payment = {
   ADD_OPTION: 1,
 };
 
-const Payment = ({ settingsTitle }) => {
+const Payment = ({ settingsTitle, paymentOptions }) => {
   // eslint-disable-next-line no-unused-vars
   const [creditCardData, setCreditCardData] = useState({
     cvc: '',
@@ -49,6 +49,24 @@ const Payment = ({ settingsTitle }) => {
 
     setCurrentContent(payment.LIST_OPTIONS);
   }, []);
+
+  // renders
+  const renderCardNumber = (number) => {
+    const cardNumber = String(number);
+
+    return (
+      <p className="option__number">
+        <strong>**** **** ****</strong>{' '}
+        {cardNumber.substring(cardNumber.length - 4)}
+      </p>
+    );
+  };
+
+  const renderCardExpiry = (expiry) => {
+    const [year, month] = String(expiry).split('-');
+
+    return <small>{`Expira em ${month}/${year}`}</small>;
+  };
 
   return (
     <div>
@@ -159,18 +177,18 @@ const Payment = ({ settingsTitle }) => {
         </div>
       ) : (
         <ul className="payment-options">
-          <li>
-            <div className="option">
-              <img src={fakeCreditCardImg} alt="" className="option__image" />
-              <p className="option__number">
-                <strong>**** **** ****</strong> 8302
-              </p>
-              <small>Expira em 02/30</small>
-            </div>
-            <button type="button" className="outlined no-border">
-              Remover
-            </button>
-          </li>
+          {(paymentOptions || []).map((option) => (
+            <li>
+              <div className="option">
+                <img src={fakeCreditCardImg} alt="" className="option__image" />
+                {renderCardNumber(option.number)}
+                {renderCardExpiry(option.expiry)}
+              </div>
+              <button type="button" className="outlined no-border">
+                Remover
+              </button>
+            </li>
+          ))}
           <li className="new-option">
             <button
               type="button"

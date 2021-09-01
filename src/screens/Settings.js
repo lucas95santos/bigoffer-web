@@ -73,7 +73,12 @@ const Settings = () => {
       case settings.SECURITY.code:
         return <Security settingsTitle={settings.SECURITY.title} />;
       case settings.PAYMENT.code:
-        return <Payment settingsTitle={settings.PAYMENT.title} />;
+        return (
+          <Payment
+            settingsTitle={settings.PAYMENT.title}
+            paymentOptions={authenticatedUser?.paymentOptions}
+          />
+        );
       case settings.SESSION.code:
         return <Session settingsTitle={settings.SESSION.title} />;
       case settings.BASIC_INFO.code:
