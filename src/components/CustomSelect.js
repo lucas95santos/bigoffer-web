@@ -64,7 +64,7 @@ const CustomSelect = ({
         style={{ color: !value && '#bbbbbb' }}
         {...rest}
       >
-        <option value={null} selected={!value} disabled={value}>
+        <option value={null} defaultValue={placeholder} disabled={value}>
           {placeholder}
         </option>
         {options.map((option) => (

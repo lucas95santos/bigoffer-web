@@ -22,7 +22,7 @@ const BasicInfo = ({ settingsTitle, user }) => {
     neighborhood: user?.address?.neighborhood || '',
     zipCode: user?.address?.zipCode || '',
     city: user?.address?.city || '',
-    state: '',
+    state: user?.address?.state || '',
   });
 
   const handleInputChange = useCallback((field, value) => {
