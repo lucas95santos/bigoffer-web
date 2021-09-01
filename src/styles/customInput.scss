@@ -13,7 +13,8 @@
   }
 
   &.uppercase {
-    input {
+    input,
+    select {
       text-transform: uppercase !important;
 
       &::placeholder {
@@ -22,7 +23,8 @@
     }
   }
 
-  input {
+  input,
+  select {
     width: 100%;
     max-height: 36px;
     font-size: 0.875rem;
@@ -55,7 +57,8 @@
   &.error {
     border-color: $textErrorColor;
 
-    input {
+    input,
+    select {
       &::placeholder {
         color: $textErrorColor;
         opacity: 0.7;

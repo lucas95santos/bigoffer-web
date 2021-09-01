@@ -1,9 +1,16 @@
 import React, { useState, useCallback } from 'react';
 // components
-import { CustomInput as Input } from '../../components';
+import { CustomInput as Input, CustomSelect as Select } from '../../components';
 // icons
 import { FiMail, FiUser, FiPhone } from 'react-icons/fi';
 import { RiProfileLine } from 'react-icons/ri';
+
+const mockStates = [
+  { value: 'SP', name: 'São Paulo' },
+  { value: 'RJ', name: 'Rio de Janeiro' },
+  { value: 'PR', name: 'Paraná' },
+  { value: 'MS', name: 'Mato Grosso do Sul' },
+];
 
 const BasicInfo = ({ settingsTitle, user }) => {
   const [formData, setFormData] = useState({
@@ -15,7 +22,7 @@ const BasicInfo = ({ settingsTitle, user }) => {
     neighborhood: user?.address?.neighborhood || '',
     zipCode: user?.address?.zipCode || '',
     city: user?.address?.city || '',
-    state: user?.address?.state || '',
+    state: '',
   });
 
   const handleInputChange = useCallback((field, value) => {
@@ -145,17 +152,16 @@ const BasicInfo = ({ settingsTitle, user }) => {
               errors={[]}
               autocomplete="nope"
             />
-            <Input
-              type="text"
+            <Select
               placeholder="Estado"
               classes="half-size"
               value={formData.state}
-              onTextChange={(event) =>
+              options={mockStates}
+              onSelectChange={(event) =>
                 handleInputChange('state', event.target.value)
               }
               icon={RiProfileLine}
               errors={[]}
-              autocomplete="nope"
             />
           </div>
         </fieldset>

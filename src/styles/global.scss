@@ -1,6 +1,7 @@
 /* all the global css styles will be here*/
 
-input {
+input,
+select {
   height: 40px;
   border: 2px solid #dddddd;
   border-radius: 4px;
@@ -30,6 +31,14 @@ input {
   &.input-error {
     border-color: $textErrorColor;
   }
+}
+
+select {
+  -webkit-appearance: none; /* Remove estilo padrão do Chrome */
+  -moz-appearance: none; /* Remove estilo padrão do FireFox */
+  appearance: none; /* Remove estilo padrão do FireFox*/
+  padding: 8px;
+  background: transparent;
 }
 
 .input-inline {
