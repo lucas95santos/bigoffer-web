@@ -24,6 +24,7 @@ const AuthenticationModal = () => {
     handleAuthenticatedUser,
     routeToRedirect,
     setRouteToRedirect,
+    changeAppState,
   } = useContext(GlobalContext);
 
   // state
@@ -73,10 +74,16 @@ const AuthenticationModal = () => {
         handleAuthenticatedUser(authenticatedUser);
         showAuthenticationModal(false);
 
+        changeAppState('global', 'LOADING');
+
         if (routeToRedirect) {
           history.push(`/${routeToRedirect}`);
           setRouteToRedirect(null);
         }
+
+        setTimeout(() => {
+          changeAppState('global', 'READY');
+        }, 1000);
       }
     } else {
       setAuthenticationErrors(errors);

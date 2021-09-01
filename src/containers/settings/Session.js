@@ -7,7 +7,7 @@ import { Authentication } from '../../helpers';
 
 const Session = ({ settingsTitle }) => {
   // context
-  const { handleAuthenticatedUser } = useContext(GlobalContext);
+  const { handleAuthenticatedUser, changeAppState } = useContext(GlobalContext);
 
   // router
   const history = useHistory();
@@ -18,8 +18,14 @@ const Session = ({ settingsTitle }) => {
   // handlers
   const onSessionEnd = useCallback(async () => {
     await Authentication.signOut();
+    changeAppState('global', 'LOADING');
+
     handleAuthenticatedUser();
     history.push('/');
+
+    setTimeout(() => {
+      changeAppState('global', 'READY');
+    }, 1000);
   }, []);
 
   return (
@@ -37,6 +43,13 @@ const Session = ({ settingsTitle }) => {
                 onClick={onSessionEnd}
               >
                 Sair
+              </button>
+              <button
+                type="button"
+                className="outlined cancel"
+                onClick={() => showSignOutButton(false)}
+              >
+                Cancelar
               </button>
             </>
           ) : (
