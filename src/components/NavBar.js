@@ -1,10 +1,10 @@
-import React, { useContext, useCallback, useState } from 'react';
+import React, { useContext, useCallback, useState, useRef } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 // global context
 import { GlobalContext } from '../contexts/global';
 // components
 import { MobileMenu } from './MobileMenu';
-// import { CategoryBar } from './CategoryBar';
+import { Dropdown } from './Dropdown';
 // icons
 import { CgHome } from 'react-icons/cg';
 import { FiBookmark, FiBell, FiMenu } from 'react-icons/fi';
@@ -21,6 +21,9 @@ const NavBar = () => {
     setRouteToRedirect,
     changeAppState,
   } = useContext(GlobalContext);
+
+  // refs
+  const userAreaRef = useRef();
 
   // state
   const [shouldShowMobileMenu, showMobileMenu] = useState(false);
@@ -108,7 +111,7 @@ const NavBar = () => {
                 </button>
               </li>
               {authenticatedUser ? (
-                <li className="menu__item">
+                <li className="menu__item" ref={userAreaRef}>
                   <div className="user-area">
                     <div className="user-area__avatar">
                       <FaUserAlt />
@@ -117,6 +120,12 @@ const NavBar = () => {
                       {authenticatedUser.name}
                     </p>
                   </div>
+                  <Dropdown targetRef={userAreaRef}>
+                    <ul>
+                      <li>Aparência: claro</li>
+                      <li>Sair</li>
+                    </ul>
+                  </Dropdown>
                 </li>
               ) : (
                 <li className="menu__item">
@@ -141,7 +150,6 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        {/* <CategoryBar /> */}
       </nav>
     </header>
   );

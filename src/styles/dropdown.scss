@@ -1,0 +1,26 @@
+.dropdown {
+  position: absolute;
+  bottom: -200px;
+  height: 200px;
+  width: 200px;
+  background: transparent;
+  z-index: 4;
+
+  &.show {
+    display: block;
+  }
+
+  &.hide {
+    display: none;
+  }
+
+  .dropdown-content {
+    height: calc(100% - 8px);
+    background: $whiteColor;
+    border-radius: $tinnySpace;
+    margin-top: 8px;
+    // box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid $borderColor;
+    padding: $defaultSpace;
+  }
+}
