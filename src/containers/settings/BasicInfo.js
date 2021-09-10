@@ -4,6 +4,8 @@ import { CustomInput as Input, CustomSelect as Select } from '../../components';
 // icons
 import { FiMail, FiUser, FiPhone } from 'react-icons/fi';
 import { RiProfileLine } from 'react-icons/ri';
+// utils
+import { phoneFormatter, zipCodeFormatter } from '../../utils';
 
 const mockStates = [
   { value: 'SP', name: 'São Paulo' },
@@ -16,20 +18,36 @@ const BasicInfo = ({ settingsTitle, user }) => {
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
-    phone: user?.phone || '',
+    phone: phoneFormatter(user?.phone) || '',
     street: user?.address?.street || '',
     complement: user?.address?.complement || '',
     neighborhood: user?.address?.neighborhood || '',
-    zipCode: user?.address?.zipCode || '',
+    zipCode: zipCodeFormatter(user?.address?.zipCode) || '',
     city: user?.address?.city || '',
     state: user?.address?.state || '',
   });
 
   const handleInputChange = useCallback((field, value) => {
-    setFormData((oldFormData) => ({
-      ...oldFormData,
-      [field]: value,
-    }));
+    switch (field) {
+      case 'phone':
+        setFormData((oldFormData) => ({
+          ...oldFormData,
+          [field]: phoneFormatter(value),
+        }));
+        break;
+      case 'zipCode':
+        setFormData((oldFormData) => ({
+          ...oldFormData,
+          [field]: zipCodeFormatter(value),
+        }));
+        break;
+      default:
+        setFormData((oldFormData) => ({
+          ...oldFormData,
+          [field]: value,
+        }));
+        break;
+    }
   }, []);
 
   const onSaveInfo = useCallback((event) => {
