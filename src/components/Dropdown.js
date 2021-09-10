@@ -1,10 +1,8 @@
 import React, { useEffect, useCallback, useRef, useState } from 'react';
-// deve ser capaz de receber uma largura e uma altura, mas ter um valor padrão para ambas
-// deve ser capaz de receber um posicionamento, mas já iniciar centralizado
 
 const Dropdown = (props) => {
   // props
-  const { targetRef, classes, children } = props;
+  const { targetRef, classes, placedOn, width, height, children } = props;
 
   // refs
   const dropdownRef = useRef();
@@ -29,6 +27,7 @@ const Dropdown = (props) => {
     };
   }, []);
 
+  // handlers
   const onMouseOver = useCallback(() => {
     showDropdown(true);
   }, []);
@@ -44,9 +43,25 @@ const Dropdown = (props) => {
     }
   }, []);
 
+  const getPosition = useCallback((position) => {
+    const positions = {
+      right: 'placed-on-right',
+      center: 'placed-on-center',
+    };
+
+    return positions[position];
+  }, []);
+
   return (
     <div
-      className={`dropdown ${classes} ${shouldShowDropdown ? 'show' : 'hide'}`}
+      className={`dropdown ${classes} ${
+        shouldShowDropdown ? 'show' : 'hide'
+      } ${getPosition(placedOn)}`}
+      style={{
+        width: width || '',
+        height: height || '',
+        bottom: `-${height}px` || '',
+      }}
       ref={dropdownRef}
     >
       <div className="dropdown-content">{children}</div>
