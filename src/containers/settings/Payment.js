@@ -178,7 +178,7 @@ const Payment = ({ settingsTitle, paymentOptions }) => {
       ) : (
         <ul className="payment-options">
           {(paymentOptions || []).map((option) => (
-            <li>
+            <li key={option.id}>
               <div className="option">
                 <img src={fakeCreditCardImg} alt="" className="option__image" />
                 {renderCardNumber(option.number)}
