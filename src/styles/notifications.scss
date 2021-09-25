@@ -1,0 +1,245 @@
+@import 'react-credit-cards/lib/styles.scss';
+
+.notifications {
+  margin-top: $navbarHeight;
+
+  .notifications__content {
+    margin-top: $mediumSpace;
+    display: flex;
+    align-items: flex-start;
+    gap: $mediumSpace;
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .notifications__menu,
+    .notifications__info {
+      background: $whiteColor;
+      border: 1px solid $borderColor;
+      border-radius: 4px;
+    }
+
+    .notifications__menu {
+      flex: 0.25;
+
+      @media screen and (max-width: 1000px) {
+        flex: 1;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 1000px) {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        @media screen and (max-width: 375px) {
+          flex-direction: column;
+          flex-wrap: nowrap;
+        }
+
+        li {
+          font-size: 0.9rem;
+          font-weight: 400;
+          letter-spacing: 0.4px;
+          color: #777777;
+          display: flex;
+          align-items: center;
+          gap: $smallSpace;
+          padding: $defaultSpace;
+          cursor: pointer;
+          transition: all linear 0.15s;
+
+          &:first-child {
+            border-radius: 4px 4px 0 0;
+          }
+
+          &:last-child {
+            border-radius: 0 0 4px 4px;
+          }
+
+          &:hover {
+            background: #f1f1f1;
+          }
+
+          &.active {
+            color: $primaryColor;
+
+            svg {
+              color: $primaryColor;
+            }
+          }
+
+          svg {
+            font-size: 1.1rem;
+            color: #888888;
+            transition: all linear 0.15s;
+          }
+        }
+      }
+    }
+
+    .notifications__info {
+      // min-height: 238px;
+      flex: 1;
+      padding: $defaultSpace;
+
+      h2 {
+        color: $primaryColor;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+
+      &.transparent {
+        background: transparent !important;
+        border: none;
+        padding: 0;
+      }
+
+      .info-title {
+        color: $primaryColor;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        margin-bottom: $defaultSpace;
+      }
+
+      .notification {
+        background: $whiteColor;
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        padding: $smallSpace;
+        margin-bottom: $defaultSpace;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all linear 0.15s;
+
+        &:hover {
+          background: #f9f9f9;
+        }
+
+        button {
+          color: $textDarkColor;
+
+          svg {
+            font-size: 1.3rem;
+          }
+        }
+
+        .notification__content {
+          span {
+            color: $primaryColor;
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: $smallSpace;
+
+            &.read {
+              color: $textDarkColor;
+            }
+
+            &.removed {
+              color: $textErrorColor;
+            }
+          }
+
+          p {
+            color: $textDarkColor;
+            font-weight: 400;
+            font-size: 0.875rem;
+          }
+        }
+
+        .notification__actions {
+          display: flex;
+          gap: $smallSpace;
+          align-items: center;
+
+          button {
+            &:first-child {
+              svg {
+                font-size: 1.1rem;
+              }
+            }
+          }
+        }
+      }
+
+      .add-payment,
+      .payment-options {
+        display: flex;
+        gap: $largeSpace;
+        margin-top: $mediumSpace;
+      }
+
+      .payment-options {
+        width: 50%;
+        flex-direction: column;
+        gap: $defaultSpace;
+
+        @media screen and (max-width: 680px) {
+          width: 100%;
+        }
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: $defaultSpace;
+          border: 1px solid $borderColor;
+          padding: $defaultSpace;
+
+          @media screen and (max-width: 400px) {
+            flex-direction: column;
+          }
+
+          &.new-option {
+            padding: 0;
+            border: none;
+
+            button {
+              max-height: 32px;
+              font-size: 0.875rem;
+              color: $primaryColor;
+              line-height: 5px;
+              margin-top: $defaultSpace;
+
+              &:hover {
+                color: $whiteColor;
+              }
+            }
+          }
+
+          .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $defaultSpace;
+
+            .option__number {
+              color: #777777;
+              font-weight: 500;
+
+              strong {
+                letter-spacing: 1px;
+              }
+            }
+
+            small {
+              color: #999999;
+            }
+          }
+
+          button {
+            font-size: 0.875rem;
+            color: $textErrorColor;
+          }
+        }
+      }
+    }
+  }
+}
