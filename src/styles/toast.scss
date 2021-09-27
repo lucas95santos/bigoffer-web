@@ -1,0 +1,61 @@
+.toast {
+  position: fixed;
+  top: $mediumSpace;
+  right: $mediumSpace;
+  width: 320px;
+  height: 80px;
+  padding: $defaultSpace;
+  display: flex;
+  justify-content: space-between;
+  gap: $smallSpace;
+  background: $whiteColor;
+  color: $textDarkColor;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  z-index: 999;
+
+  .toast-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: $smallSpace;
+
+    span {
+      color: $primaryColor;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      display: flex;
+      gap: $defaultSpace;
+
+      button {
+        font-size: 0.75rem;
+        font-weight: 500;
+
+        &:first-child {
+          color: $primaryColor;
+
+          &:hover {
+            color: $primaryColor !important;
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    color: $textDarkColor;
+    align-self: flex-start;
+
+    &:hover {
+      color: #555555 !important;
+    }
+
+    svg {
+      font-size: 1.3rem;
+    }
+  }
+}

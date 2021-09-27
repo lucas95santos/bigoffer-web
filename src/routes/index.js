@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Switch } from 'react-router-dom';
 // route wrapper
 import Route from './Route';
 // context
 import { GlobalContext } from '../contexts/global';
 // components
-import { NavBar, LoadingWrapper } from '../components';
+import { NavBar, LoadingWrapper, Toast } from '../components';
 // screens
 import { Home, SavedItems, Notifications, Settings } from '../screens';
 
@@ -18,9 +18,13 @@ const Routes = () => {
   const globalContext = useContext(GlobalContext);
   const { appState } = globalContext;
 
+  // fake state
+  const [shouldShowToast, showToast] = useState(true);
+
   return (
     <LoadingWrapper visible={appState.global === 'LOADING'}>
       <NavBar />
+      <Toast visible={shouldShowToast} onClose={showToast} />
       <ScreenWrapper>
         <Switch>
           <Route exact path="/" component={Home} />

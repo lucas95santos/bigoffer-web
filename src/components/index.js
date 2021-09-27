@@ -8,3 +8,4 @@ export * from './CustomInput';
 export * from './CustomSelect';
 export * from './LoadingWrapper';
 export * from './Dropdown';
+export * from './Toast';
