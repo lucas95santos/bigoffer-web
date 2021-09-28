@@ -14,6 +14,14 @@
   border-radius: 4px;
   z-index: 999;
 
+  &.toast-in {
+    animation: toastIn 0.4s ease-out;
+  }
+
+  &.toast-out {
+    animation: toastOut 0.35s ease-out;
+  }
+
   .toast-container {
     flex: 1;
     display: flex;
@@ -57,5 +65,27 @@
     svg {
       font-size: 1.3rem;
     }
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
