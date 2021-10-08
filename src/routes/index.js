@@ -25,6 +25,13 @@ const Routes = () => {
   //   showToast(appState.global !== 'LOADING');
   // }, [appState]);
 
+  const settingsRouteGroup = [
+    '/configuracoes',
+    '/configuracoes/seguranca',
+    '/configuracoes/pagamento',
+    '/configuracoes/sessao',
+  ];
+
   return (
     <LoadingWrapper visible={appState.global === 'LOADING'}>
       <NavBar />
@@ -34,7 +41,12 @@ const Routes = () => {
           <Route exact path="/" component={Home} />
           <Route path="/salvos" component={SavedItems} privateRoute />
           <Route path="/notificacoes" component={Notifications} privateRoute />
-          <Route path="/configuracoes" component={Settings} privateRoute />
+          <Route
+            exact
+            path={settingsRouteGroup}
+            component={Settings}
+            privateRoute
+          />
         </Switch>
       </ScreenWrapper>
     </LoadingWrapper>

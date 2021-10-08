@@ -51,7 +51,13 @@ const NavBar = () => {
   };
 
   const isRouteActive = useCallback(
-    (route) => location.pathname === `/${route}`,
+    (route) => {
+      if (route === 'configuracoes') {
+        return location.pathname.includes(route);
+      }
+
+      return location.pathname === `/${route}`;
+    },
     [location],
   );
 
