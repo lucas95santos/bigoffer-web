@@ -34,6 +34,7 @@ const NavBar = () => {
 
   // handlers
   const onAccessClick = () => {
+    setRouteToRedirect(null);
     showAuthenticationModal(true);
   };
 

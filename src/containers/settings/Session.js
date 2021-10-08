@@ -36,7 +36,9 @@ const Session = ({ settingsTitle }) => {
         <div className="sign-out">
           {shouldShowSignOutButton ? (
             <>
-              <p>Clique no botão para encerrar</p>
+              <p>
+                Clique no botão <strong>Sair</strong> para encerrar
+              </p>
               <button
                 type="button"
                 className="solid danger"

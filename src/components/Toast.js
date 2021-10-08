@@ -8,7 +8,8 @@ import { RiCloseLine } from 'react-icons/ri';
 
 const Toast = ({ visible, onClose }) => {
   // context
-  const { changeAppState, appState } = useContext(GlobalContext);
+  const { changeAppState, appState, authenticatedUser } =
+    useContext(GlobalContext);
 
   // state
   const [isOut, setIsOut] = useState(false);
@@ -33,7 +34,7 @@ const Toast = ({ visible, onClose }) => {
   const goToNotifications = () => {
     onClose();
 
-    if (location.pathname !== '/notificacoes') {
+    if (location.pathname !== '/notificacoes' && authenticatedUser) {
       changeAppState('global', 'LOADING');
       history.push('/notificacoes');
     }

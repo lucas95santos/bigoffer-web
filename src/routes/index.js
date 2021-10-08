@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Switch } from 'react-router-dom';
 // route wrapper
 import Route from './Route';
@@ -19,11 +19,11 @@ const Routes = () => {
   const { appState } = globalContext;
 
   // fake state
-  const [shouldShowToast, showToast] = useState(appState.global !== 'LOADING');
+  const [shouldShowToast, showToast] = useState(false);
 
-  useEffect(() => {
-    showToast(appState.global !== 'LOADING');
-  }, [appState]);
+  // useEffect(() => {
+  //   showToast(appState.global !== 'LOADING');
+  // }, [appState]);
 
   return (
     <LoadingWrapper visible={appState.global === 'LOADING'}>
